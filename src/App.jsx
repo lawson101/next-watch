@@ -1,8 +1,15 @@
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home.jsx";
+import Library from "./pages/Library.jsx";
+import NotFound from "./pages/NotFound.jsx";
+
 function App() {
     return (
-        <div>
-            <h1>Hello</h1>
-        </div>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="*" element={<NotFound />} />
+        </Routes>
     );
 }
 
