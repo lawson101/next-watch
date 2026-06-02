@@ -25,8 +25,8 @@ Built with React, the TMDB API and Supabase.
 | Styling | Tailwind CSS |
 | Routing | React Router |
 | Movie Data | TMDB API |
-| Authentication | Supabase Auth
-| Database | Supabase PostgreSQL
+| Authentication | Supabase Auth |
+| Database | Supabase PostgreSQL |
 | Hosting | Netlify |
 
 ---
@@ -57,7 +57,7 @@ Create a `.env` file in the root of the project:
 ```env
 VITE_TMDB_API_KEY=your_tmdb_api_key_here
 VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_SUPABASE_PUB_KEY=your_supabase_key
 ```
 
 ### Run Locally
@@ -76,7 +76,7 @@ The app deploys to Netlify in one step:
 npm run build
 ```
 
-Or connect your GitHub repo to [Netlify](https://netlify.com) for automatic deployments on every push. Make sure to add your `VITE_TMDB_API_KEY`, `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` to the Netlify environment variables.
+Or connect your GitHub repo to [Netlify](https://netlify.com) for automatic deployments on every push. Make sure to add your `VITE_TMDB_API_KEY`, `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUB_KEY` to the Netlify environment variables.
 
 ---
 
@@ -84,9 +84,9 @@ Or connect your GitHub repo to [Netlify](https://netlify.com) for automatic depl
 
 Movie data is sourced from the [TMDB API](https://developer.themoviedb.org/docs). This product uses the TMDB API but is not endorsed or certified by TMDB.
 
-## Database
+## Database and Authentication
 
-The application uses Supabase to store user-specific data.
+The application uses Supabase to store user-specific data and for user authentication.
 
 ## License
 
