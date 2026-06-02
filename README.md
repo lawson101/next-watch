@@ -1,6 +1,6 @@
 # next-watch/
 
-A movie discovery site. Search for any movie, explore details, and get linked to where you can watch or download it.
+A movie discovery site. Search for movies, explore details, and get linked to where you can watch or download it.
 
 Built with React, the TMDB API and Supabase.
 
