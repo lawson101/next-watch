@@ -36,7 +36,7 @@ Built with React, the TMDB API and Supabase.
 ### Prerequisites
 
 - Node.js v18+
-- A free [TMDB API key](https://www.themoviedb.org/settings/api)
+- A free [TMDB Access Token](https://www.themoviedb.org/settings/api)
 - A free supabase URL and Database
 
 ### Installation
@@ -55,7 +55,7 @@ npm install
 Create a `.env` file in the root of the project:
 
 ```env
-VITE_TMDB_API_KEY=your_tmdb_api_key_here
+VITE_TMDB_ACCESS_TOKEN=your_tmdb_access_token
 VITE_SUPABASE_URL=your_supabase_project_url
 VITE_SUPABASE_PUB_KEY=your_supabase_key
 ```
@@ -76,7 +76,7 @@ The app deploys to Netlify in one step:
 npm run build
 ```
 
-Or connect your GitHub repo to [Netlify](https://netlify.com) for automatic deployments on every push. Make sure to add your `VITE_TMDB_API_KEY`, `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUB_KEY` to the Netlify environment variables.
+Or connect your GitHub repo to [Netlify](https://netlify.com) for automatic deployments on every push. Make sure to add your `VITE_TMDB_ACCESS_TOKEN`, `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUB_KEY` to the Netlify environment variables.
 
 ---
 
