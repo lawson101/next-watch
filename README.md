@@ -14,6 +14,7 @@ Built with React, the TMDB API and Supabase.
 - Save favorites
 - Create a watchlist
 - User authentication
+- Contact form powered by Formspree
 
 ---
 
@@ -27,6 +28,7 @@ Built with React, the TMDB API and Supabase.
 | Movie Data | TMDB API |
 | Authentication | Supabase Auth |
 | Database | Supabase PostgreSQL |
+| Contact Forms | Formspree |
 | Hosting | Netlify |
 
 ---
@@ -87,6 +89,10 @@ Movie data is sourced from the [TMDB API](https://developer.themoviedb.org/docs)
 ## Database and Authentication
 
 The application uses Supabase to store user-specific data and for user authentication.
+
+## Contact Form
+
+The contact form is powered by Formspree, allowing users to send emails without requiring a custom backend.
 
 ## License
 
