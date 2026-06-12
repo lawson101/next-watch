@@ -28,7 +28,7 @@ Built with React, the TMDB API and Supabase.
 | Movie Data | TMDB API |
 | Authentication | Supabase Auth |
 | Database | Supabase PostgreSQL |
-| Contact Forms | Formspree |
+| Contact Form | Formspree |
 | Hosting | Netlify |
 
 ---
@@ -38,8 +38,9 @@ Built with React, the TMDB API and Supabase.
 ### Prerequisites
 
 - Node.js v18+
-- A free [TMDB Access Token](https://www.themoviedb.org/settings/api)
-- A free supabase URL and Database
+- A [TMDB Access Token](https://www.themoviedb.org/settings/api)
+- A supabase URL and Database
+- A formspree account
 
 ### Installation
 
@@ -60,6 +61,7 @@ Create a `.env` file in the root of the project:
 VITE_TMDB_ACCESS_TOKEN=your_tmdb_access_token
 VITE_SUPABASE_URL=your_supabase_project_url
 VITE_SUPABASE_PUB_KEY=your_supabase_key
+VITE_FORMSPREE_FORM_ID=your_formspree_id
 ```
 
 ### Run Locally
@@ -78,7 +80,7 @@ The app deploys to Netlify in one step:
 npm run build
 ```
 
-Or connect your GitHub repo to [Netlify](https://netlify.com) for automatic deployments on every push. Make sure to add your `VITE_TMDB_ACCESS_TOKEN`, `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUB_KEY` to the Netlify environment variables.
+Or connect your GitHub repo to [Netlify](https://netlify.com) for automatic deployments on every push. Make sure to add your `VITE_TMDB_ACCESS_TOKEN`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUB_KEY` and `VITE_FORMSPREE_FORM_ID`  to the Netlify environment variables.
 
 ---
 
