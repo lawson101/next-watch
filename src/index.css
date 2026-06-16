@@ -1,2 +1,52 @@
 @import "tailwindcss";
+@font-face {
+    font-family: "montserrat";
+    src: url("assets/fonts/montserrat.ttf") format("truetype");
+}
+@font-face {
+    font-family: "garet";
+    src: url("assets/fonts/garet.woff2") format("woff2");
+}
+@theme {
+    /* Fonts */
+    --font-garet: "garet", sans-serif;
+    --font-montserrat: "montserrat", sans-serif;
 
+    /* Backgrounds */
+    --color-background: #0f172a;
+    --color-surface: #1e293b;
+
+    /* Brand */
+    --color-primary: #3b82f6;
+    --color-primary-hover: #2563eb;
+
+    /* Text */
+    --color-text: #f8fafc;
+    --color-text-secondary: #94a3b8;
+
+    /* Borders */
+    --color-border: #334155;
+
+    /* Buttons */
+    --color-button-hover: #061a3a;
+
+    /* Status */
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+}
+
+input::placeholder {
+    color: --text-secondary;
+}
