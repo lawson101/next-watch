@@ -18,7 +18,7 @@ const Navbar = () => {
                                 <input
                                     type="text"
                                     id="search"
-                                    placeholder="Find your next watch..."
+                                    placeholder="Search..."
                                     className="w-full py-2 border-none focus:outline-none"
                                 />
                                 <button type="submit">
