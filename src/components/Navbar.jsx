@@ -1,16 +1,18 @@
-import { Link } from "react-router-dom";
-import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
+import { FaSearch, FaBars } from "react-icons/fa";
 import { useState } from "react";
 
 const Navbar = () => {
+    const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
+
     return (
         <nav className="bg-surface">
             <div className="font-garet text-text text-[0.9rem] max-w-7xl mx-auto px-4 md:px-8 py-3">
                 <div className="flex items-center justify-between gap-10">
                     {/* Brand and Search bar */}
                     <div className="flex items-center max-w-2xl items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full">
-                        <div className="font-bold font-montserrat text-[1.1rem]">
+                        <div className="font-bold font-montserrat sm:text-[1rem] md:text-[1.1rem]">
                             <Link to="/">next-watch</Link>
                         </div>
                         <div className="flex-1">
@@ -29,22 +31,22 @@ const Navbar = () => {
                     </div>
 
                     {/* Navigation */}
-                    <div className="hidden md:flex items-center gap-10 min-w-fit">
+                    <div className="hidden md:flex items-center gap-10 shrink-0">
                         <div className="flex gap-10">
                             <div className="flex relative group">
                                 <Link to="/movies">Movies</Link>
 
-                                <span className="absolute left-0 top-6.5 h-[2px] w-0 bg-text-secondary rounded-xl transition-all duration-300 group-hover:w-full" />
+                                <span className={`absolute left-0 top-6.5 h-[2px] ${location.pathname === "/movies" ? "w-full" : "w-0 group-hover:w-full"} bg-text-secondary rounded-xl transition-all duration-300`}/>
                             </div>
                             <div className="relative group">
                                 <Link to="/tv">TV Shows</Link>
 
-                                <span className="absolute left-0 top-6.5 h-[2px] w-0 bg-text-secondary rounded-xl transition-all duration-300 group-hover:w-full" />
+                                <span className={`absolute left-0 top-6.5 h-[2px] ${location.pathname === "/tv" ? "w-full" : "w-0 group-hover:w-full"} bg-text-secondary rounded-xl transition-all duration-300`}/>
                             </div>
                             <div className="relative group">
                                 <Link to="/trending">Trending</Link>
 
-                                <span className="absolute left-0 top-6.5 h-[2px] w-0 bg-text-secondary rounded-xl transition-all duration-300 group-hover:w-full" />
+                                <span className={`absolute left-0 top-6.5 h-[2px] ${location.pathname === "/trending" ? "w-full" : "w-0 group-hover:w-full"} bg-text-secondary rounded-xl transition-all duration-300`}/>
                             </div>
                         </div>
                         <div className="flex gap-10">
@@ -61,7 +63,7 @@ const Navbar = () => {
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="text-2xl text-text"
+                            className="text-2xl text-text my-2"
                         >
                             <FaBars />
                         </button>
