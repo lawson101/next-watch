@@ -12,7 +12,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between gap-10">
                     {/* Brand and Search bar */}
                     <div className="flex items-center max-w-2xl items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full">
-                        <div className="font-bold font-montserrat sm:text-[1rem] md:text-[1.1rem]">
+                        <div className="font-bold font-montserrat text-[1.1rem]">
                             <Link to="/">next-watch</Link>
                         </div>
                         <div className="flex-1">
@@ -52,7 +52,7 @@ const Navbar = () => {
                         <div className="flex gap-10">
                             <Link
                                 to="/signin"
-                                className="px-6 py-2.5 bg-background border border-border rounded-xl transition duration-300 hover:border-gray-500"
+                                className="px-6 py-2.5 bg-background border border-border rounded-xl transition duration-300 hover:bg-button-hover"
                             >
                                 Sign In
                             </Link>

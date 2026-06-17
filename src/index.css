@@ -16,19 +16,15 @@
     --color-background: #0f172a;
     --color-surface: #1e293b;
 
-    /* Brand */
-    --color-primary: #3b82f6;
-    --color-primary-hover: #2563eb;
-
     /* Text */
-    --color-text: #f8fafc;
+    --color-text: #e5e5e6;
     --color-text-secondary: #94a3b8;
 
     /* Borders */
-    --color-border: #334155;
+    --color-border: #4b5563;
 
     /* Buttons */
-    --color-button-hover: #061a3a;
+    --color-button-hover: #02132e;
 
     /* Status */
     --color-success: #22c55e;
@@ -44,6 +40,7 @@
 
 html,
 body {
+    padding: 0;
     margin: 0;
 }
 
