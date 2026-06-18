@@ -1,4 +1,5 @@
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import Form from "./Form.jsx";
 
@@ -57,25 +58,25 @@ const Footer = () => {
                     </h4>
                     <div className="flex gap-5 justify-center">
                         <a
-                            href="https://twitter.com/@_lawson101"
-                            target="_blank"
-                            className="hover:text-text-secondary transition duration-300"
-                        >
-                            <FaTwitter size={24} />
-                        </a>
-                        <a
-                            href="https://github.com/lawson-101"
+                            href="https://github.com/lawson101"
                             target="_blank"
                             className="hover:text-text-secondary transition duration-300"
                         >
                             <FaGithub size={24} />
                         </a>
                         <a
-                            href="/"
+                            href="https://www.linkedin.com/in/lawson-ishikaku-314758370/"
                             target="_blank"
                             className="hover:text-text-secondary transition duration-300"
                         >
                             <FaLinkedin size={24} />
+                        </a>
+                        <a
+                            href="https://twitter.com/_lawson101"
+                            target="_blank"
+                            className="hover:text-text-secondary transition duration-300"
+                        >
+                            <FaXTwitter size={24} />
                         </a>
                     </div>
 
@@ -84,7 +85,7 @@ const Footer = () => {
             </div>
             <div className="mt-8 text-center text-text-secondary text-sm">
                 <p className="mb-2">
-                    This product uses the TMDB API but is not endorsed or
+                    This product uses the <span className="font-bold">TMDB API</span> but is not endorsed or
                     certified by TMDB.
                 </p>
                 <p>© 2026 next-watch. All rights reserved.</p>
