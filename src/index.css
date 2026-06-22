@@ -7,24 +7,23 @@
     font-family: "garet";
     src: url("assets/fonts/garet.woff2") format("woff2");
 }
+
 @theme {
     /* Fonts */
     --font-garet: "garet", sans-serif;
     --font-montserrat: "montserrat", sans-serif;
 
     /* Backgrounds */
-    --color-background: #0d1425;
-    --color-surface: #1e293b;
+    --color-background: #000000;
+    --color-surface: #18181B;
 
     /* Text */
-    --color-text: #e5e5e6;
-    --color-text-secondary: #94a3b8;
+    --color-text: #ffffff;
+    --color-text-secondary: #e9bb67;
+    --color-text-gray: #ada18b;
 
     /* Borders */
-    --color-border: #4b5563;
-
-    /* Buttons */
-    --color-button-hover: #02132e;
+    --color-border: #808080;
 }
 
 /* Chrome, Edge, Safari */
@@ -62,8 +61,9 @@ html,
 body {
     padding: 0;
     margin: 0;
+    font-family: "garet", sans-serif;
 }
 
-input::placeholder {
-    color: --text-secondary;
+*::pla {
+    color: var(--color-text-gray)
 }

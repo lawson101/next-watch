@@ -1,27 +1,53 @@
 import { Link } from "react-router-dom";
-import { LuSearch } from "react-icons/lu";
 
 const NotFound = () => {
     return (
         <div className="min-h-screen bg-background flex items-center justify-center px-4">
-            <div className="bg-surface border border-border rounded-2xl p-8 md:p-12 text-center max-w-lg w-full shadow-lg">
-                <LuSearch className="mx-auto text-7xl text-text-secondary" />
+            <div className="text-center max-w-xl">
 
-                <h1 className="mt-6 text-3xl font-bold text-text">
-                    Page Not Found
+                <h1 className="text-8xl md:text-9xl font-black text-text-secondary/20 font-montserrat">
+                    404
                 </h1>
 
-                <p className="mt-3 text-text-secondary">
-                    We couldn't find the page you're looking for. It may have
-                    been moved, deleted, or the URL may be incorrect.
+                <h2 className="mt-8 text-3xl md:text-4xl font-bold text-text">
+                    Oops! This page does not exist.
+                </h2>
+
+                <p className="mt-4 text-text-secondary text-sm md:text-[1rem]">
+                    The page you are looking for may have been removed,
+                    renamed, or never existed.
                 </p>
 
-                <Link
-                    to="/"
-                    className="inline-flex items-center justify-center mt-8 px-6 py-3 bg-background border border-border text-text font-medium rounded-lg hover:bg-button-hover transition-colors duration-300"
-                >
-                    Back to Home
-                </Link>
+                <div className="mt-8 flex justify-center gap-4 font-semibold text-[0.9rem]">
+                    <Link
+                        to="/"
+                        className="
+                            px-6 py-3
+                            rounded-xl
+                            bg-surface
+                            text-text-gray
+                            border border-border
+                            hover:border-text-secondary
+                            transition
+                        "
+                    >
+                        Back to Home
+                    </Link>
+
+                    <Link
+                        to="/movie"
+                        className="
+                            px-6 py-3
+                            rounded-xl
+                            bg-text-secondary
+                            text-background
+                            hover:opacity-80
+                            transition
+                        "
+                    >
+                        Browse Movies
+                    </Link>
+                </div>
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
 const Home = () => {
     return (
-        <div>
-            <h1>Hello</h1>
+        <div className="bg-background text-text h-screen">
+            
         </div>
     );
-}
+};
 
 export default Home;

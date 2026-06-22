@@ -10,12 +10,12 @@ function Form() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="mt-4 space-y-2 text-sm">
+        <form onSubmit={handleSubmit} className="mt-4 space-y-2 text-sm font-semibold">
             <input
                 id="email"
                 type="email"
                 name="email"
-                placeholder="Email..."
+                placeholder="Email"
                 className="w-full p-2 rounded-lg border border-border bg-surface focus:outline-none focus:ring focus:ring-text-secondary transition duration-300"
                 required
             />
@@ -27,8 +27,8 @@ function Form() {
             <textarea
                 id="message"
                 name="message"
-                rows={4}
-                placeholder="Comment here..."
+                rows={5}
+                placeholder="What's on your mind?"
                 className="w-full p-2 rounded-lg border border-border bg-surface focus:outline-none focus:ring focus:ring-text-secondary transition duration-300"
                 required
             />
@@ -40,9 +40,9 @@ function Form() {
             <button
                 type="submit"
                 disabled={state.submitting}
-                className="flex items-center justify-center w-full border border-border bg-surface text-text font-semibold py-2.5 rounded-lg hover:bg-button-hover transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-surface"
+                className="flex items-center justify-center w-full border border-border bg-surface text-text font-semibold py-2.5 rounded-lg hover:bg-background hover:text-text-secondary transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-surface"
             >
-                {state.submitting ? "Sending..." : "Leave a message"}
+                {state.submitting ? "3... 2... 1... Lift off!" : "Toss it my way"}
                 <FaPaperPlane className="ml-2" />
             </button>
         </form>

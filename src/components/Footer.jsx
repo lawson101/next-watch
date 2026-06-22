@@ -5,25 +5,25 @@ import Form from "./Form.jsx";
 
 const Footer = () => {
     return (
-        <footer className="bg-background text-text font-garet py-8">
-            <div className="container text-center mx-auto px-4 md:px-16 lg:px-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <footer className="bg-background py-8 px-4 text-text">
+            <div className="container text-center mx-auto md:px-16 lg:px-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {/* Brand Section */}
                 <div>
-                    <h3 className="text-2xl font-bold font-montserrat">
-                        next-watch
+                    <h3 className="text-2xl text-text-secondary font-bold font-montserrat">
+                        n/w
                     </h3>
-                    <p className="text-text-secondary mt-4 italic">
+                    <p className="mt-4 text-[0.9rem] text-text-gray">
                         "Discover movies and TV shows and find where to watch
                         them".
                     </p>
                 </div>
 
                 {/* Quick Navigation Links */}
-                <div>
-                    <h4 className="text-lg font-semibold mb-4">
+                <div className="font-semibold">
+                    <h4 className="text-lg mb-4 font-bold">
                         Quick Navigation
                     </h4>
-                    <ul className="space-y-3 w-fit mx-auto">
+                    <ul className="space-y-3 w-fit mx-auto text-text-gray">
                         <li>
                             <Link
                                 to="/movies"
@@ -53,7 +53,7 @@ const Footer = () => {
 
                 {/* Social Links & Contact Form */}
                 <div className="mb-4 md:col-span-2 lg:col-span-1">
-                    <h4 className="text-lg font-semibold mb-4">
+                    <h4 className="text-lg font-bold mb-4">
                         Wanna stay connected?
                     </h4>
                     <div className="flex gap-5 justify-center">
@@ -83,7 +83,7 @@ const Footer = () => {
                     <Form />
                 </div>
             </div>
-            <div className="mt-8 text-center text-text-secondary text-sm">
+            <div className="mt-8 text-center  text-sm">
                 <p className="mb-2">
                     This product uses the <span className="font-bold">TMDB API</span> but is not endorsed or
                     certified by TMDB.
