@@ -13,7 +13,7 @@ const NotFound = () => {
                     Oops! This page does not exist.
                 </h2>
 
-                <p className="mt-4 text-text-secondary text-sm md:text-[1rem]">
+                <p className="mt-4 text-text-secondary text-sm md:text-[1rem] leading-relaxed">
                     The page you are looking for may have been removed,
                     renamed, or never existed.
                 </p>

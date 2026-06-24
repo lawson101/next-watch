@@ -40,7 +40,7 @@ function Form() {
             <button
                 type="submit"
                 disabled={state.submitting}
-                className="flex items-center justify-center w-full border border-border bg-surface text-text font-semibold py-2.5 rounded-lg hover:bg-background hover:text-text-secondary transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-surface"
+                className="flex items-center justify-center w-full border border-border text-text font-semibold py-2.5 rounded-lg bg-background hover:text-text-secondary transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-surface"
             >
                 {state.submitting ? "3... 2... 1... Lift off!" : "Toss it my way"}
                 <FaPaperPlane className="ml-2" />
