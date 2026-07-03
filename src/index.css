@@ -64,6 +64,8 @@ body {
     font-family: "garet", sans-serif;
 }
 
-*::pla {
-    color: var(--color-text-gray)
+input[type="checkbox"] {
+    width: 0.9rem;
+    height: 0.9rem;
+    accent-color: var(--color-text-secondary);
 }

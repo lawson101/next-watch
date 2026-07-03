@@ -5,14 +5,19 @@ import { FaClapperboard } from "react-icons/fa6";
 import { FaBars } from "react-icons/fa";
 import { LuSearch } from "react-icons/lu";
 import { FaChevronDown } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import { FaBookmark } from "react-icons/fa";
+import { useAuth } from "../context/AuthContext.jsx";
 import { useState, useEffect } from "react";
 
 const Navbar = () => {
+    const { user } = useAuth();
     const location = useLocation();
     const [hamburgerOpen, setHamburgerOpen] = useState(false);
     const [movieOpen, setMovieOpen] = useState(false);
     const [tvOpen, setTvOpen] = useState(false);
     const [trendingOpen, setTrendingOpen] = useState(false);
+    const [profileOpen, setProfileOpen] = useState(false);
 
     useEffect(() => {
         if (!hamburgerOpen) {
@@ -25,7 +30,7 @@ const Navbar = () => {
     return (
         <nav className="bg-surface">
             <div className="relative text-text font-semibold max-w-7xl mx-auto px-6 py-2">
-                <div className="flex items-center justify-between gap-7 text-sm">
+                <div className="flex items-center gap-7 text-sm">
                     {/* Brand and Search bar */}
                     <div
                         onClick={() => setHamburgerOpen(false)}
@@ -35,7 +40,7 @@ const Navbar = () => {
                             <Link to="/">n/w</Link>
                         </div>
                         <div className="flex-1">
-                            <form className="flex items-center border border-border rounded-xl px-4 bg-background focus-within:border-text-secondary transition duration-300">
+                            <form className="flex items-center gap-5 border border-border rounded-xl px-4 bg-background focus-within:border-text-secondary transition duration-300">
                                 <input
                                     type="text"
                                     id="search"
@@ -66,7 +71,7 @@ const Navbar = () => {
                                 </Link>
 
                                 <div
-                                    className={`absolute top-10 left-1/2 -translate-x-1/2 w-33 rounded-xl border border-border bg-surface p-5 transition-all duration-300
+                                    className={`absolute top-10 left-1/2 -translate-x-1/2 z-1000 w-33 rounded-xl border border-border bg-surface p-5 transition-all duration-300
                                     ${
                                         movieOpen
                                             ? "opacity-100 translate-y-0 visible"
@@ -106,7 +111,7 @@ const Navbar = () => {
                                 </Link>
 
                                 <div
-                                    className={`absolute top-10 left-1/2 -translate-x-1/2 w-33 rounded-xl border border-border bg-surface p-5 transition-all duration-300
+                                    className={`absolute top-10 left-1/2 -translate-x-1/2 z-1000 w-33 rounded-xl border border-border bg-surface p-5 transition-all duration-300
                                     ${
                                         tvOpen
                                             ? "opacity-100 translate-y-0 visible"
@@ -146,7 +151,7 @@ const Navbar = () => {
                                 </Link>
 
                                 <div
-                                    className={`absolute top-10 left-1/2 -translate-x-1/2 w-30 rounded-xl border border-border bg-surface p-5 transition-all duration-300
+                                    className={`absolute top-10 left-1/2 -translate-x-1/2 z-1000 w-30 rounded-xl border border-border bg-surface p-5 transition-all duration-300
                                     ${
                                         trendingOpen
                                             ? "opacity-100 translate-y-0 visible"
@@ -166,21 +171,80 @@ const Navbar = () => {
                             </div>
                         </div>
                         <div className="h-[20px] w-[2px] bg-text-secondary rounded-xl"></div>
-                        <div className="flex gap-5">
-                            <Link
-                                to="/signin"
-                                className="bg-background hover:text-text-secondary px-4 py-2 rounded-2xl transition duration-300"
+                        {user ? (
+                            <div
+                                onMouseOver={() => setProfileOpen(true)}
+                                onMouseOut={() => setProfileOpen(false)}
+                                className="relative"
                             >
-                                Sign In
-                            </Link>
-                        </div>
+                                <Link
+                                    to="/profile"
+                                    className="bg-background hover:text-text-secondary px-4 py-2 rounded-2xl transition duration-300"
+                                >
+                                    {user.username}
+                                </Link>
+
+                                <div
+                                    className={`absolute top-10 left-1/2 -translate-x-1/2 z-1000 w-35 rounded-xl border border-border bg-surface p-5 transition-all duration-300 space-y-4
+                                    ${
+                                        profileOpen
+                                            ? "opacity-100 translate-y-0 visible"
+                                            : "opacity-0 -translate-y-2 invisible"
+                                    }`}
+                                >
+                                    <div>
+                                        <ul className="space-y-3 text-text-gray">
+                                            <li className="flex items-center gap-3 cursor-pointer">
+                                                <FaStar className="text-text-secondary text-sm" />
+                                                <Link
+                                                    className={`${location.pathname === "/favorites" ? "text-text-secondary" : "hover:text-text-secondary"} transition duration-300`}
+                                                    to="/favorites"
+                                                >
+                                                    Favorites
+                                                </Link>
+                                            </li>
+
+                                            <li className="flex items-center gap-3 cursor-pointer">
+                                                <FaBookmark className="text-text-secondary text-sm" />
+                                                <Link
+                                                    className={`${location.pathname === "/watchlist" ? "text-text-secondary" : "hover:text-text-secondary"} transition duration-300`}
+                                                    to="/watchlist"
+                                                >
+                                                    Watchlist
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div className="h-[2px] w-full bg-text-secondary rounded-xl mb-5"></div>
+
+                                    <div>
+                                        <Link
+                                            to="/"
+                                            className="bg-background hover:text-text-secondary px-4 py-2 rounded-2xl transition duration-300 cursor-pointer"
+                                        >
+                                            Sign Out
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <div>
+                                <Link
+                                    to="/signin"
+                                    className="bg-background hover:text-text-secondary px-4 py-2 rounded-2xl transition duration-300 cursor-pointer"
+                                >
+                                    Sign In
+                                </Link>
+                            </div>
+                        )}
                     </div>
 
                     {/* Hamburger */}
                     <div className="md:hidden">
                         <button
                             onClick={() => setHamburgerOpen(!hamburgerOpen)}
-                            className="text-2xl text-text-secondary my-2"
+                            className="text-2xl my-2 text-text-secondary"
                         >
                             {hamburgerOpen ? (
                                 <FaBars className="transform rotate-135 transition duration-300" />
@@ -193,29 +257,29 @@ const Navbar = () => {
 
                 {/* Dropdown */}
                 <div
-                    className={`absolute md:hidden mt-3 right-0 w-fit p-4 bg-surface rounded-xl transition duration-300"
+                    className={`absolute md:hidden mt-3 right-0 w-fit p-4 z-1000 bg-surface rounded-xl transition duration-300"
                     ${
                         hamburgerOpen
                             ? "opacity-100 translate-y-0 visible"
                             : "opacity-10 -translate-y-2 invisible"
                     }`}
                 >
-                    <div className="flex flex-col items-start gap-5 bg-background border border-text-gray py-4 px-6 rounded-xl text-sm">
-                        <div className="w-full">
+                    <div className="flex flex-col gap-5 bg-background border border-text-gray py-4 px-6 rounded-xl text-sm">
+                        <div>
                             <div className="flex items-center justify-between gap-3">
                                 <div className="flex items-center gap-3">
                                     <FaFilm className="text-text-secondary" />
                                     <Link
                                         to="/movie"
                                         onClick={() => setHamburgerOpen(false)}
-                                        className={`transition duration-300 ${location.pathname === "/movie" ? "text-text-secondary" : "hover:text-text-secondary"}`}
+                                        className={`transition duration-300 ${location.pathname === "/movie" && "text-text-secondary"}`}
                                     >
                                         Movies
                                     </Link>
                                 </div>
                                 <FaChevronDown
                                     onClick={() => setMovieOpen(!movieOpen)}
-                                    className={`${movieOpen ? "text-text-secondary transform rotate-75" : "text-text"} hover:text-text-secondary transition duration-300`}
+                                    className={`${movieOpen ? "transform rotate-75 text-text-gray" : "text-text-secondary"} transition duration-300`}
                                 />
                             </div>
                             <div
@@ -226,7 +290,6 @@ const Navbar = () => {
                                         onClick={() =>
                                             setHamburgerOpen(!hamburgerOpen)
                                         }
-                                        className="hover:text-text-secondary transition cursor-pointer"
                                     >
                                         <Link>Popular</Link>
                                     </li>
@@ -235,7 +298,6 @@ const Navbar = () => {
                                         onClick={() =>
                                             setHamburgerOpen(!hamburgerOpen)
                                         }
-                                        className="hover:text-text-secondary transition cursor-pointer"
                                     >
                                         <Link>Top Rated</Link>
                                     </li>
@@ -244,7 +306,6 @@ const Navbar = () => {
                                         onClick={() =>
                                             setHamburgerOpen(!hamburgerOpen)
                                         }
-                                        className="hover:text-text-secondary transition cursor-pointer"
                                     >
                                         <Link>Now Playing</Link>
                                     </li>
@@ -253,28 +314,27 @@ const Navbar = () => {
                                         onClick={() =>
                                             setHamburgerOpen(!hamburgerOpen)
                                         }
-                                        className="hover:text-text-secondary transition cursor-pointer"
                                     >
                                         <Link>Upcoming</Link>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        <div className="w-full">
+                        <div>
                             <div className="flex items-center justify-between gap-3">
                                 <div className="flex items-center gap-3">
                                     <LuTv className="text-text-secondary" />
                                     <Link
                                         to="/tv"
                                         onClick={() => setHamburgerOpen(false)}
-                                        className={`transition duration-300 ${location.pathname === "/tv" ? "text-text-secondary" : "hover:text-text-secondary"}`}
+                                        className={`transition duration-300 ${location.pathname === "/tv" && "text-text-secondary"}`}
                                     >
                                         TV Shows
                                     </Link>
                                 </div>
                                 <FaChevronDown
                                     onClick={() => setTvOpen(!tvOpen)}
-                                    className={`${tvOpen ? "text-text-secondary transform rotate-75" : "text-text"} hover:text-text-secondary transition duration-300`}
+                                    className={`${tvOpen ? "transform rotate-75 text-text-gray" : "text-text-secondary"} transition duration-300`}
                                 />
                             </div>
                             <div
@@ -285,7 +345,6 @@ const Navbar = () => {
                                         onClick={() =>
                                             setHamburgerOpen(!hamburgerOpen)
                                         }
-                                        className="hover:text-text-secondary transition cursor-pointer"
                                     >
                                         <Link>Popular</Link>
                                     </li>
@@ -294,7 +353,6 @@ const Navbar = () => {
                                         onClick={() =>
                                             setHamburgerOpen(!hamburgerOpen)
                                         }
-                                        className="hover:text-text-secondary transition cursor-pointer"
                                     >
                                         <Link>Top Rated</Link>
                                     </li>
@@ -303,7 +361,6 @@ const Navbar = () => {
                                         onClick={() =>
                                             setHamburgerOpen(!hamburgerOpen)
                                         }
-                                        className="hover:text-text-secondary transition cursor-pointer"
                                     >
                                         <Link>Airing Today</Link>
                                     </li>
@@ -312,7 +369,6 @@ const Navbar = () => {
                                         onClick={() =>
                                             setHamburgerOpen(!hamburgerOpen)
                                         }
-                                        className="hover:text-text-secondary transition cursor-pointer"
                                     >
                                         <Link>On the Air</Link>
                                     </li>
@@ -320,14 +376,14 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <div className="w-full">
+                        <div>
                             <div className="flex items-center justify-between gap-3">
                                 <div className="flex items-center gap-3">
                                     <FaClapperboard className="text-text-secondary" />
                                     <Link
                                         to="/trending"
                                         onClick={() => setHamburgerOpen(false)}
-                                        className={`transition duration-300 ${location.pathname === "/trending" ? "text-text-secondary" : "hover:text-text-secondary"}`}
+                                        className={`transition duration-300 ${location.pathname === "/trending" && "text-text-secondary"}`}
                                     >
                                         Trending
                                     </Link>
@@ -336,7 +392,7 @@ const Navbar = () => {
                                     onClick={() =>
                                         setTrendingOpen(!trendingOpen)
                                     }
-                                    className={`${trendingOpen ? "text-text-secondary transform rotate-75" : "text-text"} hover:text-text-secondary transition duration-300`}
+                                    className={`${trendingOpen ? "transform rotate-75 text-text-gray" : "text-text-secondary"} transition duration-300`}
                                 />
                             </div>
                             <div
@@ -347,7 +403,6 @@ const Navbar = () => {
                                         onClick={() =>
                                             setHamburgerOpen(!hamburgerOpen)
                                         }
-                                        className="hover:text-text-secondary transition cursor-pointer"
                                     >
                                         <Link>Today</Link>
                                     </li>
@@ -356,7 +411,6 @@ const Navbar = () => {
                                         onClick={() =>
                                             setHamburgerOpen(!hamburgerOpen)
                                         }
-                                        className="hover:text-text-secondary transition cursor-pointer"
                                     >
                                         <Link>This Week</Link>
                                     </li>
@@ -366,13 +420,47 @@ const Navbar = () => {
 
                         <div className="h-[2px] w-full bg-text-secondary rounded-xl"></div>
 
-                        <Link
-                            to="/signin"
-                            onClick={() => setHamburgerOpen(false)}
-                            className="text-center px-6 py-2 w-full bg-surface rounded-xl transition duration-300 hover:text-text-secondary"
-                        >
-                            Sign In
-                        </Link>
+                        {user && (
+                            <div>
+                                <ul className="space-y-4 text-[0.95rem]">
+                                    <li
+                                        onClick={() => setHamburgerOpen(false)}
+                                        className={`flex items-center gap-3 transition duration-300 ${location.pathname === "/favorites" && "text-text-secondary"}`}
+                                    >
+                                        <FaStar className="text-text-secondary" />
+                                        <Link to="/favorites">Favorites</Link>
+                                    </li>
+
+                                    <li
+                                        onClick={() => setHamburgerOpen(false)}
+                                        className={`flex items-center gap-3 transition duration-300 ${location.pathname === "/watchlist" && "text-text-secondary"}`}
+                                    >
+                                        <FaBookmark className="text-text-secondary" />
+                                        <Link to="/watchlist">Watchlist</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
+
+                        <div
+                            className={`h-[2px] w-full ${!user && "hidden"} bg-text-secondary rounded-xl`}
+                        ></div>
+                        {user ? (
+                            <Link
+                                to="/profile"
+                                className="text-center px-6 py-2 w-full bg-surface rounded-xl transition duration-300 hover:text-text-secondary"
+                            >
+                                {user.username}
+                            </Link>
+                        ) : (
+                            <Link
+                                to="/signin"
+                                onClick={() => setHamburgerOpen(false)}
+                                className="text-center px-6 py-2 w-full bg-surface rounded-xl transition duration-300 hover:text-text-secondary"
+                            >
+                                Sign In
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>

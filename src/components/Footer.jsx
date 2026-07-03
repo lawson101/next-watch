@@ -13,16 +13,14 @@ const Footer = () => {
                         n/w
                     </h3>
                     <p className="mt-4 text-[0.9rem] text-text-gray">
-                        "Discover movies and TV shows and find where to watch
-                        them".
+                        "Search for movies, explore details, and get linked to
+                        where you can watch or download it".
                     </p>
                 </div>
 
                 {/* Quick Navigation Links */}
                 <div className="font-semibold">
-                    <h4 className="text-lg mb-4 font-bold">
-                        Quick Navigation
-                    </h4>
+                    <h4 className="text-lg mb-4 font-bold">Quick Navigation</h4>
                     <ul className="space-y-3 w-fit mx-auto text-text-gray">
                         <li>
                             <Link
@@ -54,7 +52,7 @@ const Footer = () => {
                 {/* Social Links & Contact Form */}
                 <div className="mb-4 md:col-span-2 lg:col-span-1">
                     <h4 className="text-lg font-bold mb-4">
-                        Wanna stay connected?
+                        Wanna keep in touch?
                     </h4>
                     <div className="flex gap-5 justify-center">
                         <a
@@ -83,10 +81,11 @@ const Footer = () => {
                     <Form />
                 </div>
             </div>
-            <div className="mt-8 text-center  text-sm">
+            <div className="mt-8 text-text-gray text-center text-sm">
                 <p className="mb-2">
-                    This product uses the <span className="font-bold">TMDB API</span> but is not endorsed or
-                    certified by TMDB.
+                    This product uses the{" "}
+                    <span className="font-bold">TMDB API</span> but is not
+                    endorsed or certified by TMDB.
                 </p>
                 <p>© 2026 next-watch. All rights reserved.</p>
             </div>
