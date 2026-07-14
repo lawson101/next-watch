@@ -1,5 +1,3 @@
-//!FIX: APP CRASHES WHENEVER GENRE DOESN'T FETCH
-
 const BASE_URL = "https://api.themoviedb.org/3";
 const ACCESS_TOKEN = import.meta.env.VITE_TMDB_ACCESS_TOKEN;
 const options = {
@@ -15,7 +13,7 @@ async function fetchTMDB(path) {
     try {
         const response = await fetch(`${BASE_URL}${path}`, options);
         if (!response.ok) {
-            throw new Error("Failed to fetch movies");
+            throw new Error("Failed to fetch media");
         }
         return await response.json();
     } catch (error) {
@@ -51,26 +49,26 @@ async function getTvGenres() {
 function getGenres(genre_ids, media_type) {
     return media_type === "movie"
         ? genre_ids.map(
-              (id) => movieResponse.find((movie) => movie.id === id)?.name,
+              (id) => movieResponse.find((media) => media.id === id)?.name,
           )
         : genre_ids.map(
-              (id) => tvResponse.find((movie) => movie.id === id)?.name,
+              (id) => tvResponse.find((media) => media.id === id)?.name,
           );
 }
 
-export function getMovieData(response) {
-    return response.map((movie) => ({
-        id: movie.id,
-        title: movie.title || movie.name,
-        image_url: `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`,
-        poster_url: `https://image.tmdb.org/t/p/w342${movie.poster_path}`,
-        media_type: movie.media_type,
-        genres: getGenres(movie.genre_ids, movie.media_type),
+export function getMediaData(response) {
+    return response.map((media) => ({
+        id: media.id,
+        title: media.title || media.name,
+        image_url: `https://image.tmdb.org/t/p/w342${media.backdrop_path}`,
+        poster_url: `https://image.tmdb.org/t/p/w342${media.poster_path}`,
+        media_type: media.media_type,
+        genres: getGenres(media.genre_ids, media.media_type),
         isFavorite: false,
         isWatchList: false,
-        release_date: movie.release_date || movie.first_air_date,
-        rating: movie.vote_average.toFixed(1),
-        overview: movie.overview,
+        release_date: media.release_date || media.first_air_date,
+        rating: media.vote_average.toFixed(1),
+        overview: media.overview,
     }));
 }
 
@@ -81,22 +79,6 @@ export function getTrendingDay() {
 
 export function getTrendingWeek() {
     return fetchTMDB("/trending/all/week");
-}
-
-// Trending Movies by Day and Week
-export function getTrendingMovieDay() {
-    return fetchTMDB("//trending/movie/day");
-}
-export function getTrendingMovieWeek() {
-    return fetchTMDB("//trending/movie/week");
-}
-
-// Trending TV Shows by Day and Week
-export function getTrendingTvDay() {
-    return fetchTMDB("//trending/movie/day");
-}
-export function getTrendingTvWeek() {
-    return fetchTMDB("//trending/movie/week");
 }
 
 // Popular movies

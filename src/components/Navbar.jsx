@@ -1,14 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext.jsx";
+import { useState, useEffect } from "react";
 import { LuTv } from "react-icons/lu";
 import { FaFilm } from "react-icons/fa";
 import { FaClapperboard } from "react-icons/fa6";
 import { FaBars } from "react-icons/fa";
 import { LuSearch } from "react-icons/lu";
 import { FaChevronDown } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
+import { IoHeart } from "react-icons/io5";
 import { FaBookmark } from "react-icons/fa";
-import { useAuth } from "../context/AuthContext.jsx";
-import { useState, useEffect } from "react";
 
 const Navbar = () => {
     const { user } = useAuth();
@@ -16,14 +16,12 @@ const Navbar = () => {
     const [hamburgerOpen, setHamburgerOpen] = useState(false);
     const [movieOpen, setMovieOpen] = useState(false);
     const [tvOpen, setTvOpen] = useState(false);
-    const [trendingOpen, setTrendingOpen] = useState(false);
     const [profileOpen, setProfileOpen] = useState(false);
 
     useEffect(() => {
         if (!hamburgerOpen) {
             setMovieOpen(false);
             setTvOpen(false);
-            setTrendingOpen(false);
         }
     }, [hamburgerOpen]);
 
@@ -40,7 +38,7 @@ const Navbar = () => {
                             <Link to="/">n/w</Link>
                         </div>
                         <div className="flex-1">
-                            <form className="flex items-center gap-5 border border-border rounded-xl px-4 bg-background focus-within:border-text-secondary transition duration-300">
+                            <form className="flex items-center gap-5 border border-border rounded-2xl px-4 bg-background focus-within:border-text-secondary transition duration-300">
                                 <input
                                     type="text"
                                     id="search"
@@ -137,11 +135,7 @@ const Navbar = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <div
-                                onMouseOver={() => setTrendingOpen(true)}
-                                onMouseOut={() => setTrendingOpen(false)}
-                                className="relative flex items-center gap-3"
-                            >
+                            <div className="flex items-center gap-3">
                                 <FaClapperboard className="text-text-secondary" />
                                 <Link
                                     to="/trending"
@@ -149,25 +143,6 @@ const Navbar = () => {
                                 >
                                     Trending
                                 </Link>
-
-                                <div
-                                    className={`absolute top-10 left-1/2 -translate-x-1/2 z-1000 w-30 rounded-xl border border-border bg-surface p-5 transition-all duration-300
-                                    ${
-                                        trendingOpen
-                                            ? "opacity-100 translate-y-0 visible"
-                                            : "opacity-0 -translate-y-2 invisible"
-                                    }`}
-                                >
-                                    <ul className="space-y-3 text-text-gray">
-                                        <li className="hover:text-text-secondary transition cursor-pointer">
-                                            <Link>Today</Link>
-                                        </li>
-
-                                        <li className="hover:text-text-secondary transition cursor-pointer">
-                                            <Link>This Week</Link>
-                                        </li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                         <div className="h-[20px] w-[2px] bg-text-secondary rounded-xl"></div>
@@ -195,7 +170,7 @@ const Navbar = () => {
                                     <div>
                                         <ul className="space-y-3 text-text-gray">
                                             <li className="flex items-center gap-3 cursor-pointer">
-                                                <FaStar className="text-text-secondary text-sm" />
+                                                <IoHeart className="text-text-secondary text-[1rem]" />
                                                 <Link
                                                     className={`${location.pathname === "/favorites" ? "text-text-secondary" : "hover:text-text-secondary"} transition duration-300`}
                                                     to="/favorites"
@@ -377,44 +352,15 @@ const Navbar = () => {
                         </div>
 
                         <div>
-                            <div className="flex items-center justify-between gap-3">
-                                <div className="flex items-center gap-3">
-                                    <FaClapperboard className="text-text-secondary" />
-                                    <Link
-                                        to="/trending"
-                                        onClick={() => setHamburgerOpen(false)}
-                                        className={`transition duration-300 ${location.pathname === "/trending" && "text-text-secondary"}`}
-                                    >
-                                        Trending
-                                    </Link>
-                                </div>
-                                <FaChevronDown
-                                    onClick={() =>
-                                        setTrendingOpen(!trendingOpen)
-                                    }
-                                    className={`${trendingOpen ? "transform rotate-75 text-text-gray" : "text-text-secondary"} transition duration-300`}
-                                />
-                            </div>
-                            <div
-                                className={`${!trendingOpen && "hidden"} pt-4 transition duration-300`}
-                            >
-                                <ul className="space-y-3 text-text-gray">
-                                    <li
-                                        onClick={() =>
-                                            setHamburgerOpen(!hamburgerOpen)
-                                        }
-                                    >
-                                        <Link>Today</Link>
-                                    </li>
-
-                                    <li
-                                        onClick={() =>
-                                            setHamburgerOpen(!hamburgerOpen)
-                                        }
-                                    >
-                                        <Link>This Week</Link>
-                                    </li>
-                                </ul>
+                            <div className="flex items-center gap-3">
+                                <FaClapperboard className="text-text-secondary" />
+                                <Link
+                                    to="/trending"
+                                    onClick={() => setHamburgerOpen(false)}
+                                    className={`transition duration-300 ${location.pathname === "/trending" && "text-text-secondary"}`}
+                                >
+                                    Trending
+                                </Link>
                             </div>
                         </div>
 
@@ -422,12 +368,12 @@ const Navbar = () => {
 
                         {user && (
                             <div>
-                                <ul className="space-y-4 text-[0.95rem]">
+                                <ul className="space-y-4 text-[0.9rem]">
                                     <li
                                         onClick={() => setHamburgerOpen(false)}
                                         className={`flex items-center gap-3 transition duration-300 ${location.pathname === "/favorites" && "text-text-secondary"}`}
                                     >
-                                        <FaStar className="text-text-secondary" />
+                                        <IoHeart className="text-text-secondary text-[1rem]" />
                                         <Link to="/favorites">Favorites</Link>
                                     </li>
 

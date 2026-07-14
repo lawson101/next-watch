@@ -81,7 +81,7 @@ const Footer = () => {
                     <Form />
                 </div>
             </div>
-            <div className="mt-8 text-text-gray text-center text-sm">
+            <div className="mt-8 text-center text-sm">
                 <p className="mb-2">
                     This product uses the{" "}
                     <span className="font-bold">TMDB API</span> but is not
