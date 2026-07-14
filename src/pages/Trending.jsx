@@ -49,21 +49,23 @@ const Trending = () => {
                             onClick={() => {
                                 setFilter(filter === "movie" ? "all" : "movie");
                             }}
-                            className="w-fit bg-surface/80 gap-3 py-3 px-4 md:py-3 md:px-6 rounded-lg"
+                            className="w-fit bg-surface/80 flex items-center gap-3 py-3 px-4 md:py-3 md:px-6 rounded-lg text-sm"
                         >
                             <FaFilm
-                                className={`w-fit text-sm md:text-[1rem] ${filter === "movie" && "text-text-secondary"} transition duration-300`}
+                                className={`w-fit  md:text-[1rem] md:text-text-secondary  ${filter === "movie" && "text-text-secondary"} transition duration-300`}
                             />
+                            <span className={`hidden md:block ${filter === "movie" && "text-text-secondary"} transition duration-300`}>Movies</span>
                         </button>
                         <button
                             onClick={() => {
                                 setFilter(filter === "tv" ? "all" : "tv");
                             }}
-                            className="bg-surface/80 gap-3 py-3 px-4 md:py-3 md:px-6 rounded-lg"
+                            className="bg-surface/80 flex items-center gap-3 py-3 px-4 md:py-3 md:px-6 rounded-lg text-sm"
                         >
                             <LuTv
-                                className={`text-sm md:text-[1rem] ${filter === "tv" && "text-text-secondary"} transition duration-300`}
+                                className={`md:text-[1rem] md:text-text-secondary ${filter === "tv" && "text-text-secondary"} transition duration-300`}
                             />
+                            <span className={`hidden md:block ${filter === "tv" && "text-text-secondary"} transition duration-300`}>TV Shows</span>
                         </button>
                     </div>
                     <div className="flex items-center w-fit h-fit ml-auto text-xs md:text-sm border border-surface rounded-2xl">
