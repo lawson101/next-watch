@@ -74,19 +74,27 @@ const Navbar = () => {
                                 >
                                     <ul className="space-y-3 text-text-gray">
                                         <li className="hover:text-text-secondary transition cursor-pointer">
-                                            <Link>Popular</Link>
+                                            <Link to="movie/popular">
+                                                Popular
+                                            </Link>
                                         </li>
 
                                         <li className="hover:text-text-secondary transition cursor-pointer">
-                                            <Link>Top Rated</Link>
+                                            <Link to="movie/top_rated">
+                                                Top Rated
+                                            </Link>
                                         </li>
 
                                         <li className="hover:text-text-secondary transition cursor-pointer">
-                                            <Link>Now Playing</Link>
+                                            <Link to="movie/now_playing">
+                                                Now Playing
+                                            </Link>
                                         </li>
 
                                         <li className="hover:text-text-secondary transition cursor-pointer">
-                                            <Link>Upcoming</Link>
+                                            <Link to="movie/upcoming">
+                                                Upcoming
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -114,19 +122,25 @@ const Navbar = () => {
                                 >
                                     <ul className="space-y-3 text-text-gray">
                                         <li className="hover:text-text-secondary transition cursor-pointer">
-                                            <Link>Popular</Link>
+                                            <Link to="tv/popular">Popular</Link>
                                         </li>
 
                                         <li className="hover:text-text-secondary transition cursor-pointer">
-                                            <Link>Top Rated</Link>
+                                            <Link to="tv/top_rated">
+                                                Top Rated
+                                            </Link>
                                         </li>
 
                                         <li className="hover:text-text-secondary transition cursor-pointer">
-                                            <Link>Airing Today</Link>
+                                            <Link to="tv/airing_today">
+                                                Airing Today
+                                            </Link>
                                         </li>
 
                                         <li className="hover:text-text-secondary transition cursor-pointer">
-                                            <Link>On the Air</Link>
+                                            <Link to="tv/on_the_air">
+                                                On the Air
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>

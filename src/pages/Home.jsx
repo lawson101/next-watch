@@ -65,7 +65,6 @@ const Home = () => {
                                 }),
                             ),
                         );
-
                         setTopRatedMovies(
                             filterMedia(getMediaData(result4?.results)).map(
                                 (media) => ({
@@ -257,7 +256,10 @@ const Home = () => {
             <div className="space-y-10">
                 <div>
                     <div className="flex mb-4">
-                        <Link className="flex items-center">
+                        <Link
+                            to={`${popularFilter === "movie" ? "movie" : "tv"}/popular`}
+                            className="flex items-center"
+                        >
                             <h3 className="font-bold md:text-xl text-text-secondary">
                                 Fan Favorites
                             </h3>
@@ -298,7 +300,10 @@ const Home = () => {
                 </div>
                 <div>
                     <div className="flex mb-4">
-                        <Link className="flex items-center">
+                        <Link
+                            to={`${topFilter === "movie" ? "movie" : "tv"}/top_rated`}
+                            className="flex items-center"
+                        >
                             <h3 className="font-bold md:text-xl text-text-secondary">
                                 Top Rated on next-watch
                             </h3>
