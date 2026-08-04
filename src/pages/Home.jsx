@@ -116,11 +116,11 @@ const Home = () => {
         <div className="bg-background text-text min-h-screen max-[475px]:px-4 px-7 md:px-8 py-5 space-y-10 md:space-y-15">
             <div className="flex flex-col lg:flex-row gap-5">
                 <div className="flex-1 rounded-2xl">
-                    <div className="w-full max-[475px]:h-60 h-full relative group overflow-hidden rounded-2xl shadow-[3px_2px_10px_0px_rgba(255,255,255,0.15)] shadow-text-gray/10">
+                    <div className="w-full h-full relative group overflow-hidden rounded-2xl shadow-[3px_2px_10px_0px_rgba(255,255,255,0.15)] shadow-text-gray/10">
                         <img
                             src={temp?.image_url}
                             alt={temp?.title}
-                            className="w-full h-full min-h-60 md:min-h-100 lg:min-h-130 object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="w-full h-full min-h-75 md:min-h-100 lg:min-h-130 object-cover transition-transform duration-500 group-hover:scale-105"
                         />
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
@@ -172,7 +172,7 @@ const Home = () => {
                                 )}
                             </div>
                             <div className="space-y-2 md:space-y-3 flex-1 pb-2 pr-1">
-                                <h2 className="max-[475px]:text-[0.85rem] text-[1rem] md:text-2xl font-bold text-white line-clamp-1">
+                                <h2 className="text-[1rem] md:text-2xl font-bold text-white line-clamp-1">
                                     <Link>{temp?.title}</Link>
                                 </h2>
                                 <div className="flex flex-wrap gap-2">
@@ -180,7 +180,7 @@ const Home = () => {
                                         return (
                                             <span
                                                 key={temp?.genre_ids[index]}
-                                                className={`${index > 1 && "hidden sm:inline-block"} bg-text-gray/10 backdrop-blur-md max-[475px]:text-[7px] text-[8px] md:text-[10px] lg:text-[12px] uppercase font-bold px-2 py-1 rounded-md text-gray-200 border border-white/5`}
+                                                className={`${index > 1 && "hidden sm:inline-block"} bg-text-gray/10 backdrop-blur-md text-[9px] md:text-[12px] uppercase font-bold px-2 py-1 rounded-md text-gray-200 border border-white/5`}
                                             >
                                                 {genre}
                                             </span>
@@ -188,7 +188,7 @@ const Home = () => {
                                     })}
                                 </div>
 
-                                <p className="max-[475px]:max-w-[90%] max-w-[85%] max-[475px]:text-[10px] text-[12px] md:text-sm lg:text-[0.92rem] leading-relaxed text-gray-300 line-clamp-2 md:line-clamp-3">
+                                <p className="max-[475px]:max-w-[90%] max-w-[85%] text-[12px] md:text-[15px] leading-relaxed text-gray-300 line-clamp-2 md:line-clamp-3">
                                     {temp?.overview}
                                 </p>
                             </div>
@@ -254,7 +254,7 @@ const Home = () => {
             </div>
 
             <div className="space-y-10">
-                <div>
+                <div className="min-h-60">
                     <div className="flex mb-4">
                         <Link
                             to={`${popularFilter === "movie" ? "movie" : "tv"}/popular`}
@@ -298,7 +298,7 @@ const Home = () => {
                         )}
                     </div>
                 </div>
-                <div>
+                <div className="min-h-60">
                     <div className="flex mb-4">
                         <Link
                             to={`${topFilter === "movie" ? "movie" : "tv"}/top_rated`}
