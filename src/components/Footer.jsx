@@ -1,11 +1,13 @@
+import { useLocation } from "react-router-dom";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import Form from "./Form.jsx";
 
 const Footer = () => {
+    const location = useLocation();
     return (
-        <footer className="bg-background py-8 px-4 text-text">
+        <footer className="bg-background py-8 px-4 text-text mt-10">
             <div className="container text-center mx-auto md:px-16 lg:px-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {/* Brand Section */}
                 <div>
@@ -19,13 +21,13 @@ const Footer = () => {
                 </div>
 
                 {/* Quick Navigation Links */}
-                <div className="font-semibold">
+                <div className="font-bold">
                     <h4 className="text-lg mb-4 font-bold">Quick Navigation</h4>
                     <ul className="space-y-3 w-fit mx-auto text-text-gray">
                         <li>
                             <Link
-                                to="/movies"
-                                className="transition duration-300 hover:text-text-secondary"
+                                to="/movie"
+                                className={`${location.pathname === "/movie" ? "text-text-secondary" : "hover:text-text-secondary"} transition duration-300`}
                             >
                                 Movies
                             </Link>
@@ -33,7 +35,7 @@ const Footer = () => {
                         <li>
                             <Link
                                 to="/tv"
-                                className="transition duration-300 hover:text-text-secondary"
+                                className={`${location.pathname === "/tv" ? "text-text-secondary" : "hover:text-text-secondary"} transition duration-300`}
                             >
                                 TV Shows
                             </Link>
@@ -41,7 +43,7 @@ const Footer = () => {
                         <li>
                             <Link
                                 to="/trending"
-                                className="transition duration-300 hover:text-text-secondary"
+                                className={`${location.pathname === "/trending" ? "text-text-secondary" : "hover:text-text-secondary"} transition duration-300`}
                             >
                                 Trending
                             </Link>
@@ -81,7 +83,7 @@ const Footer = () => {
                     <Form />
                 </div>
             </div>
-            <div className="mt-8 text-center text-sm">
+            <div className="mt-8 text-center text-[0.85rem]  md:text-sm">
                 <p className="mb-2">
                     This product uses the{" "}
                     <span className="font-bold">TMDB API</span> but is not

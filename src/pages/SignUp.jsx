@@ -6,7 +6,7 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <div className="min-h-screen bg-background text-text grid grid-cols-1 lg:grid-cols-2 lg:gap-40 gap-10 p-12 lg:px-22 font-semibold">
+        <div className="min-h-screen bg-background text-text grid grid-cols-1 lg:grid-cols-2 lg:gap-40 gap-10 p-12 lg:px-22 font-bold">
             <div className="space-y-8">
                 <div className="space-y-3">
                     <div className="font-bold text-3xl">Ready to Sign Up?</div>

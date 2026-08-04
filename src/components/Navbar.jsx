@@ -1,14 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useState, useEffect } from "react";
-import { LuTv } from "react-icons/lu";
-import { FaFilm } from "react-icons/fa";
+import { LuTv, LuSearch } from "react-icons/lu";
 import { FaClapperboard } from "react-icons/fa6";
-import { FaBars } from "react-icons/fa";
-import { LuSearch } from "react-icons/lu";
-import { FaChevronDown } from "react-icons/fa";
-import { IoHeart } from "react-icons/io5";
-import { FaBookmark } from "react-icons/fa";
+import { FaFilm, FaBars, FaChevronDown } from "react-icons/fa";
+import { IoHeart, IoBookmark } from "react-icons/io5";
 
 const Navbar = () => {
     const { user } = useAuth();
@@ -26,8 +22,8 @@ const Navbar = () => {
     }, [hamburgerOpen]);
 
     return (
-        <nav className="bg-surface">
-            <div className="relative text-text font-semibold max-w-7xl mx-auto px-6 py-2">
+        <nav className="bg-surface/60">
+            <div className="relative text-text font-bold max-w-7xl mx-auto px-6 py-2">
                 <div className="flex items-center gap-7 text-sm">
                     {/* Brand and Search bar */}
                     <div
@@ -38,7 +34,7 @@ const Navbar = () => {
                             <Link to="/">n/w</Link>
                         </div>
                         <div className="flex-1">
-                            <form className="flex items-center gap-5 border border-border rounded-2xl px-4 bg-background focus-within:border-text-secondary transition duration-300">
+                            <form className="flex items-center gap-5 border border-border/50 rounded-2xl px-4 bg-background focus-within:border-text-secondary/50 transition duration-300">
                                 <input
                                     type="text"
                                     id="search"
@@ -58,7 +54,7 @@ const Navbar = () => {
                             <div
                                 onMouseOver={() => setMovieOpen(true)}
                                 onMouseOut={() => setMovieOpen(false)}
-                                className="relative flex items-center gap-3 transition duration-300"
+                                className="relative flex items-center gap-2 transition duration-300"
                             >
                                 <FaFilm className="text-text-secondary" />
                                 <Link
@@ -69,7 +65,7 @@ const Navbar = () => {
                                 </Link>
 
                                 <div
-                                    className={`absolute top-10 left-1/2 -translate-x-1/2 z-1000 w-33 rounded-xl border border-border bg-surface p-5 transition-all duration-300
+                                    className={`absolute top-10 left-1/2 -translate-x-1/2 z-1000 w-33 rounded-xl border border-border/50 bg-surface p-5 transition-all duration-300
                                     ${
                                         movieOpen
                                             ? "opacity-100 translate-y-0 visible"
@@ -98,7 +94,7 @@ const Navbar = () => {
                             <div
                                 onMouseOver={() => setTvOpen(true)}
                                 onMouseOut={() => setTvOpen(false)}
-                                className="relative flex items-center gap-3 transition duration-300"
+                                className="relative flex items-center gap-2 transition duration-300"
                             >
                                 <LuTv className="text-text-secondary" />
                                 <Link
@@ -109,7 +105,7 @@ const Navbar = () => {
                                 </Link>
 
                                 <div
-                                    className={`absolute top-10 left-1/2 -translate-x-1/2 z-1000 w-33 rounded-xl border border-border bg-surface p-5 transition-all duration-300
+                                    className={`absolute top-10 left-1/2 -translate-x-1/2 z-1000 w-34 rounded-xl border border-border/50 bg-surface p-5 transition-all duration-300
                                     ${
                                         tvOpen
                                             ? "opacity-100 translate-y-0 visible"
@@ -135,7 +131,7 @@ const Navbar = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-2">
                                 <FaClapperboard className="text-text-secondary" />
                                 <Link
                                     to="/trending"
@@ -160,7 +156,7 @@ const Navbar = () => {
                                 </Link>
 
                                 <div
-                                    className={`absolute top-10 left-1/2 -translate-x-1/2 z-1000 w-35 rounded-xl border border-border bg-surface p-5 transition-all duration-300 space-y-4
+                                    className={`absolute top-10 left-1/2 -translate-x-1/2 z-1000 w-35 rounded-xl border border-border/50 bg-surface p-5 transition-all duration-300 space-y-4
                                     ${
                                         profileOpen
                                             ? "opacity-100 translate-y-0 visible"
@@ -168,8 +164,8 @@ const Navbar = () => {
                                     }`}
                                 >
                                     <div>
-                                        <ul className="space-y-3 text-text-gray">
-                                            <li className="flex items-center gap-3 cursor-pointer">
+                                        <ul className="space-y-3">
+                                            <li className="flex items-center gap-2 cursor-pointer">
                                                 <IoHeart className="text-text-secondary text-[1rem]" />
                                                 <Link
                                                     className={`${location.pathname === "/favorites" ? "text-text-secondary" : "hover:text-text-secondary"} transition duration-300`}
@@ -179,8 +175,8 @@ const Navbar = () => {
                                                 </Link>
                                             </li>
 
-                                            <li className="flex items-center gap-3 cursor-pointer">
-                                                <FaBookmark className="text-text-secondary text-sm" />
+                                            <li className="flex items-center gap-2 cursor-pointer">
+                                                <IoBookmark className="text-text-secondary" />
                                                 <Link
                                                     className={`${location.pathname === "/watchlist" ? "text-text-secondary" : "hover:text-text-secondary"} transition duration-300`}
                                                     to="/watchlist"
@@ -232,16 +228,16 @@ const Navbar = () => {
 
                 {/* Dropdown */}
                 <div
-                    className={`absolute md:hidden mt-3 right-0 w-fit p-4 z-1000 bg-surface rounded-xl transition duration-300"
+                    className={`absolute md:hidden mt-3 right-0 w-fit p-4 z-1000 bg-surface rounded-2xl transition duration-300"
                     ${
                         hamburgerOpen
                             ? "opacity-100 translate-y-0 visible"
                             : "opacity-10 -translate-y-2 invisible"
                     }`}
                 >
-                    <div className="flex flex-col gap-5 bg-background border border-text-gray py-4 px-6 rounded-xl text-sm">
+                    <div className="flex flex-col gap-5 bg-background border border-text-gray py-6 px-5 rounded-2xl text-sm">
                         <div>
-                            <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <FaFilm className="text-text-secondary" />
                                     <Link
@@ -296,7 +292,7 @@ const Navbar = () => {
                             </div>
                         </div>
                         <div>
-                            <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <LuTv className="text-text-secondary" />
                                     <Link
@@ -381,7 +377,7 @@ const Navbar = () => {
                                         onClick={() => setHamburgerOpen(false)}
                                         className={`flex items-center gap-3 transition duration-300 ${location.pathname === "/watchlist" && "text-text-secondary"}`}
                                     >
-                                        <FaBookmark className="text-text-secondary" />
+                                        <IoBookmark className="text-text-secondary" />
                                         <Link to="/watchlist">Watchlist</Link>
                                     </li>
                                 </ul>

@@ -45,16 +45,13 @@
     background: var(--color-border);
 }
 
-/* Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-surface) var(--color-background);
-}
-
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+    letter-spacing: 0.02em;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-surface) var(--color-background);
 }
 
 html,
@@ -62,10 +59,20 @@ body {
     padding: 0;
     margin: 0;
     font-family: "garet", sans-serif;
+    background: black;
 }
 
 input[type="checkbox"] {
     width: 0.9rem;
     height: 0.9rem;
     accent-color: var(--color-text-secondary);
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;             /* Chrome, Safari, Opera */
 }

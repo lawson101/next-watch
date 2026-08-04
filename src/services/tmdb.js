@@ -6,14 +6,17 @@ const options = {
         accept: "application/json",
     },
 };
-const movieResponse = await getMovieGenres().then((data) => data?.genres);
-const tvResponse = await getTvGenres().then((data) => data?.genres);
+const movieResponse = (await getGenres("movie"))?.genres;
+const tvResponse = (await getGenres("tv"))?.genres;
 
-async function fetchTMDB(path) {
+async function fetchTMDB(path, params = {}) {
+    const query = new URLSearchParams(params);
     try {
-        const response = await fetch(`${BASE_URL}${path}`, options);
+        const response = await fetch(`${BASE_URL}${path}?${query}`, options);
         if (!response.ok) {
-            throw new Error("Failed to fetch media");
+            throw new Error(
+                `TMDB request failed: ${response.status} ${response.statusText}`,
+            );
         }
         return await response.json();
     } catch (error) {
@@ -22,11 +25,37 @@ async function fetchTMDB(path) {
     }
 }
 
-async function getMovieGenres() {
+export async function getTrailer(id, media_type) {
     try {
-        const response = await fetch(`${BASE_URL}/genre/movie/list`, options);
+        const response = await fetch(
+            `${BASE_URL}/${media_type}/${id}/videos`,
+            options,
+        );
         if (!response.ok) {
-            throw new Error("Failed to fetch genre");
+            throw new Error(
+                `TMDB request failed: ${response.status} ${response.statusText}`,
+            );
+        }
+
+        const data = await response.json();
+        return data.results.find(
+            (video) => video.site === "YouTube" && video.type === "Trailer",
+        );
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getGenres(media_type) {
+    try {
+        const response = await fetch(
+            `${BASE_URL}/genre/${media_type}/list`,
+            options,
+        );
+        if (!response.ok) {
+            throw new Error(
+                `TMDB request failed: ${response.status} ${response.statusText}`,
+            );
         }
         return await response.json();
     } catch (error) {
@@ -34,19 +63,14 @@ async function getMovieGenres() {
     }
 }
 
-async function getTvGenres() {
-    try {
-        const response = await fetch(`${BASE_URL}/genre/tv/list`, options);
-        if (!response.ok) {
-            throw new Error("Failed to fetch genre");
-        }
-        return await response.json();
-    } catch (error) {
-        console.error("TMDB Error: ", error);
-    }
+export function filterMedia(media_list) {
+    const exclude = ["desire", "heartstopper forever", "leviticus", "obsession", "off campus", "soulm8te", "wwe summerslam 2026: saturday", "wwe summerslam 2026: sunday"];
+    return media_list.filter(
+        (media) => !exclude.includes(media.title.toLowerCase()),
+    );
 }
 
-function getGenres(genre_ids, media_type) {
+function findGenres(genre_ids, media_type) {
     return media_type === "movie"
         ? genre_ids.map(
               (id) => movieResponse.find((media) => media.id === id)?.name,
@@ -60,10 +84,11 @@ export function getMediaData(response) {
     return response.map((media) => ({
         id: media.id,
         title: media.title || media.name,
-        image_url: `https://image.tmdb.org/t/p/w342${media.backdrop_path}`,
+        image_url: `https://image.tmdb.org/t/p/original${media.backdrop_path}`,
         poster_url: `https://image.tmdb.org/t/p/w342${media.poster_path}`,
         media_type: media.media_type,
-        genres: getGenres(media.genre_ids, media.media_type),
+        genres: findGenres(media.genre_ids, media.media_type),
+        genre_ids: media.genre_ids,
         isFavorite: false,
         isWatchList: false,
         release_date: media.release_date || media.first_air_date,

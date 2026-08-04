@@ -8,13 +8,17 @@ const Form = () => {
     const { user } = useAuth();
 
     if (state.succeeded) {
-        return <p className="mt-4">Thanks for reaching out!</p>;
+        return (
+            <p className="mt-4 text-[0.96rem]">
+                I've got your message. Thanks.
+            </p>
+        );
     }
 
     return (
         <form
             onSubmit={handleSubmit}
-            className="mt-4 space-y-2 text-sm font-semibold"
+            className="mt-4 space-y-2 text-sm font-bold"
         >
             <input
                 id="email"
@@ -22,7 +26,7 @@ const Form = () => {
                 name="email"
                 defaultValue={user && user.email}
                 placeholder="Email"
-                className="w-full p-2 rounded-lg border border-border bg-surface focus:outline-none focus:ring focus:ring-text-secondary transition duration-300"
+                className="w-full p-2.5 rounded-xl border border-border/50 bg-surface/60 focus:outline-none focus:ring focus:ring-text-secondary/50 transition duration-300"
                 required
             />
             <ValidationError
@@ -35,7 +39,7 @@ const Form = () => {
                 name="message"
                 rows={5}
                 placeholder="What's on your mind?"
-                className="w-full p-2 rounded-lg border border-border bg-surface focus:outline-none focus:ring focus:ring-text-secondary transition duration-300"
+                className="w-full p-2.5 rounded-xl border border-border/50 bg-surface/60 focus:outline-none focus:ring focus:ring-text-secondary/50 transition duration-300"
                 required
             />
             <ValidationError
@@ -46,15 +50,15 @@ const Form = () => {
             <button
                 type="submit"
                 disabled={state.submitting}
-                className="flex items-center justify-center w-full border border-border text-text font-semibold py-2.5 rounded-lg bg-background hover:text-text-secondary transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-surface"
+                className="flex items-center gap-2 justify-center w-full border border-text-gray/50 text-text font-bold py-2.5 rounded-xl bg-background hover:text-text-secondary transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-surface/60"
             >
                 {state.submitting
                     ? "3... 2... 1... Lift off!"
                     : "Toss it my way"}
-                <FaPaperPlane className="ml-2" />
+                <FaPaperPlane className="text-text-secondary" />
             </button>
         </form>
     );
-}
+};
 
 export default Form;
