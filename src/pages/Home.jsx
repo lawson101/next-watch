@@ -157,7 +157,7 @@ const Home = () => {
                                     <img
                                         src={temp?.poster_url}
                                         alt={temp?.title}
-                                        className="max-[475px]:min-w-27 max-[475px]:h-35 min-w-30 h-40 md:min-w-45 md:min-h-55 lg:w-48 lg:min-h-63 rounded-2xl border border-white/10"
+                                        className="max-[475px]:min-w-28 max-[475px]:h-37 min-w-30 h-40 md:min-w-45 md:min-h-55 lg:w-48 lg:min-h-63 rounded-2xl border border-white/10"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
                                 </Link>
