@@ -200,12 +200,12 @@ const Home = () => {
                     <div className="flex items-center justify-between px-2 font-bold mb-3">
                         <Link
                             to="/trending"
-                            className="flex items-center text-[0.95rem] md:text-[1rem] text-text-secondary"
+                            className="flex items-center text-[0.95rem] md:text-[1rem] text-text-secondary group"
                         >
                             <span>
                                 Trending
                             </span>
-                            <LuChevronRight className="text-lg" />
+                            <LuChevronRight className="text-lg group-hover:text-text-gray transition duration-300" />
                         </Link>
                         <div className="bg-black/10 backdrop-blur-md text-[10px] md:text-[12px] uppercase px-2 py-1 rounded-[5px] tracking-wider text-text-gray border-1 border-text/10">
                             This Week
@@ -256,7 +256,7 @@ const Home = () => {
 
             <div className="space-y-10">
                 <div className="min-h-60">
-                    <div className="flex mb-4 text-text-secondary group">
+                    <div className="flex mb-4 text-text-secondary">
                         <Link
                             to={`${popularFilter === "movie" ? "movie" : "tv"}/popular`}
                             className="flex items-center group"
@@ -300,7 +300,7 @@ const Home = () => {
                     </MediaCarousel>
                 </div>
                 <div className="min-h-60">
-                    <div className="flex mb-4 text-text-secondary group">
+                    <div className="flex mb-4 text-text-secondary">
                         <Link
                             to={`${topFilter === "movie" ? "movie" : "tv"}/top_rated`}
                             className="flex items-center group"

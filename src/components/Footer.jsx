@@ -25,7 +25,7 @@ const Footer = () => {
                     <h4 className="uppercase mb-4 font-bold text-text-secondary text-sm">
                         Quick Navigation
                     </h4>
-                    <ul className="space-y-3 w-fit mx-auto text-text-gray">
+                    <ul className="space-y-3 w-fit mx-auto text-text-gray text-[0.95rem]">
                         <li>
                             <Link
                                 to="/movie"
