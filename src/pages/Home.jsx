@@ -11,6 +11,7 @@ import {
     filterMedia,
 } from "../services/tmdb.js";
 import { displayCards } from "../components/MediaCard.jsx";
+import MediaCarousel from "../components/MediaCarousel.jsx";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { FaStar } from "react-icons/fa";
 import { LuTv } from "react-icons/lu";
@@ -159,7 +160,7 @@ const Home = () => {
                                         alt={temp?.title}
                                         className="max-[475px]:min-w-28 max-[475px]:h-37 min-w-30 h-40 md:min-w-45 md:min-h-55 lg:w-48 lg:min-h-63 rounded-2xl border border-white/10"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent rounded-2xl"></div>
                                 </Link>
 
                                 {temp?.rating && (
@@ -196,15 +197,15 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="bg-text/[0.05] rounded-2xl w-full lg:w-[25%] py-5 px-3">
-                    <div className="flex items-center justify-between px-2 font-bold gap-3 mb-3">
+                    <div className="flex items-center justify-between px-2 font-bold mb-3">
                         <Link
                             to="/trending"
-                            className="flex items-center text-[0.95rem] md:text-[1rem]"
+                            className="flex items-center text-[0.95rem] md:text-[1rem] text-text-secondary"
                         >
-                            <span className="text-text-secondary">
+                            <span>
                                 Trending
                             </span>
-                            <LuChevronRight className="text-lg text-text-gray" />
+                            <LuChevronRight className="text-lg" />
                         </Link>
                         <div className="bg-black/10 backdrop-blur-md text-[10px] md:text-[12px] uppercase px-2 py-1 rounded-[5px] tracking-wider text-text-gray border-1 border-text/10">
                             This Week
@@ -227,7 +228,7 @@ const Home = () => {
                                             ></img>
                                         </Link>
                                         <div className="space-y-2">
-                                            <Link className="text-[0.85rem] md:text-sm line-clamp-1 hover:text-text/90 transition duration-300">
+                                            <Link className="text-[0.85rem] md:text-sm line-clamp-1">
                                                 {media?.title}
                                             </Link>
                                             <div className="flex items-center gap-5">
@@ -255,15 +256,15 @@ const Home = () => {
 
             <div className="space-y-10">
                 <div className="min-h-60">
-                    <div className="flex mb-4">
+                    <div className="flex mb-4 text-text-secondary group">
                         <Link
                             to={`${popularFilter === "movie" ? "movie" : "tv"}/popular`}
-                            className="flex items-center"
+                            className="flex items-center group"
                         >
-                            <h3 className="font-bold md:text-xl text-text-secondary">
+                            <h3 className="font-bold md:text-xl">
                                 Fan Favorites
                             </h3>
-                            <LuChevronRight className="text-xl text-text-gray" />
+                            <LuChevronRight className="text-xl md:text-2xl group-hover:text-text-gray transition duration-300" />
                         </Link>
 
                         <div className="flex items-center w-fit h-fit ml-auto text-sm border border-surface rounded-3xl">
@@ -289,25 +290,25 @@ const Home = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="grid grid-flow-col auto-cols-[180px] md:auto-cols-[200px] gap-3 font-bold overflow-x-auto scrollbar-hide scroll-smooth">
+                    <MediaCarousel>
                         {displayCards(
                             popularFilter === "movie"
                                 ? popularMovies
                                 : popularShows,
                             8,
                         )}
-                    </div>
+                    </MediaCarousel>
                 </div>
                 <div className="min-h-60">
-                    <div className="flex mb-4">
+                    <div className="flex mb-4 text-text-secondary group">
                         <Link
                             to={`${topFilter === "movie" ? "movie" : "tv"}/top_rated`}
-                            className="flex items-center"
+                            className="flex items-center group"
                         >
-                            <h3 className="font-bold md:text-xl text-text-secondary">
-                                Top Rated on next-watch
+                            <h3 className="font-bold md:text-xl">
+                                Our Top Picks
                             </h3>
-                            <LuChevronRight className="text-xl text-text-gray" />
+                            <LuChevronRight className="text-xl md:text-2xl group-hover:text-text-gray transition duration-300" />
                         </Link>
 
                         <div className="flex items-center w-fit h-fit ml-auto text-sm border border-surface rounded-3xl">
@@ -333,14 +334,14 @@ const Home = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="grid grid-flow-col auto-cols-[180px] md:auto-cols-[200px] gap-3 font-bold overflow-x-auto scrollbar-hide scroll-smooth">
+                    <MediaCarousel>
                         {displayCards(
                             topFilter === "movie"
                                 ? topRatedMovies
                                 : topRatedShows,
                             8,
                         )}
-                    </div>
+                    </MediaCarousel>
                 </div>
             </div>
         </div>

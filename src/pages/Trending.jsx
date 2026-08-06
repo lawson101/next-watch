@@ -51,7 +51,7 @@ const Trending = () => {
                             onClick={() => {
                                 setFilter(filter === "movie" ? "all" : "movie");
                             }}
-                            className="w-fit bg-surface/70 flex items-center gap-2 py-3 px-4 md:py-3 md:px-5 rounded-xl text-sm"
+                            className="w-fit bg-surface/70 flex items-center gap-2 py-3 px-4 md:py-3 md:px-5 rounded-2xl text-sm"
                         >
                             <FaFilm
                                 className={`w-fit  md:text-[1rem] md:text-text-secondary  ${filter === "movie" && "text-text-secondary"} transition duration-300`}
@@ -66,7 +66,7 @@ const Trending = () => {
                             onClick={() => {
                                 setFilter(filter === "tv" ? "all" : "tv");
                             }}
-                            className="bg-surface/70 flex items-center gap-2 py-3 px-4 md:py-3 md:px-5 rounded-xl text-sm"
+                            className="bg-surface/70 flex items-center gap-2 py-3 px-4 md:py-3 md:px-5 rounded-2xl text-sm"
                         >
                             <LuTv
                                 className={`md:text-[1rem] md:text-text-secondary ${filter === "tv" && "text-text-secondary"} transition duration-300`}

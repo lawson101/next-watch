@@ -7,7 +7,7 @@ import Form from "./Form.jsx";
 const Footer = () => {
     const location = useLocation();
     return (
-        <footer className="bg-background py-8 px-4 text-text mt-10">
+        <footer className="bg-background py-8 px-4 text-text mt-7">
             <div className="container text-center mx-auto md:px-16 lg:px-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {/* Brand Section */}
                 <div>
@@ -56,7 +56,7 @@ const Footer = () => {
                     <h4 className="text-lg font-bold mb-4">
                         Wanna keep in touch?
                     </h4>
-                    <div className="flex gap-5 justify-center">
+                    <div className="flex gap-5 justify-center text-text-gray">
                         <a
                             href="https://github.com/lawson101"
                             target="_blank"

@@ -64,7 +64,18 @@ async function getGenres(media_type) {
 }
 
 export function filterMedia(media_list) {
-    const exclude = ["desire", "heartstopper forever", "leviticus", "obsession", "off campus", "soulm8te", "wwe summerslam 2026: saturday", "wwe summerslam 2026: sunday"];
+    const exclude = [
+        "desire",
+        "heartstopper forever",
+        "leviticus",
+        "obsession",
+        "off campus",
+        "soulm8te",
+        "wwe summerslam 2026: saturday",
+        "wwe summerslam 2026: sunday",
+        "the shards",
+        "my life with the walter boys"
+    ];
     return media_list.filter(
         (media) => !exclude.includes(media.title.toLowerCase()),
     );

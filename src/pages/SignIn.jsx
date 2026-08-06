@@ -6,7 +6,7 @@ const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <div className="min-h-screen bg-background text-text grid grid-cols-1 lg:grid-cols-2 lg:gap-40 gap-10 p-12 lg:px-22 font-bold">
+        <div className="min-h-screen bg-background text-text grid grid-cols-1 lg:grid-cols-2 lg:gap-40 gap-10 py-12 px-8 md:px-12 lg:px-22 font-bold">
             <div className="space-y-12">
                 <div className="space-y-3">
                     <div className="font-bold text-3xl">Welcome Back!</div>
@@ -22,13 +22,13 @@ const SignIn = () => {
                                 type="email"
                                 name="email"
                                 placeholder="johndoe@example.com"
-                                className="block w-full p-3 rounded-xl border border-border bg-surface mt-4 focus:outline-none focus:ring focus:ring-text-secondary transition duration-300"
+                                className="block w-full p-3 rounded-2xl border border-border bg-surface mt-4 focus:outline-none focus:ring focus:ring-text-secondary/50 transition duration-300"
                                 required
                             />
                         </div>
                         <div>
                             <label htmlFor="password">Password:</label>
-                            <div className="w-full flex items-center gap-5 px-3 mt-4 rounded-xl border border-border bg-surface focus-within:border-text-secondary transition duration-300">
+                            <div className="w-full flex items-center gap-5 px-3 mt-4 rounded-2xl border border-border bg-surface focus-within:border-text-secondary/50 transition duration-300">
                                 <input
                                     id="password"
                                     type={showPassword ? "text" : "password"}
@@ -51,7 +51,7 @@ const SignIn = () => {
 
                         <button
                             type="submit"
-                            className="w-full border border-border text-text py-2.5 rounded-lg bg-background hover:text-text-secondary transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-surface"
+                            className="w-full border border-border text-text py-2.5 rounded-2xl bg-background hover:text-text-secondary transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-surface"
                         >
                             Sign In
                         </button>
@@ -74,28 +74,28 @@ const SignIn = () => {
                 <ul className="space-y-5">
                     <li className="space-y-3">
                         <div className="flex items-center gap-3 text-lg">
-                            <div className="h-[25px] w-[3px] bg-text-secondary rounded-xl"></div>
+                            <div className="h-[25px] w-[3px] bg-text-secondary rounded-2xl"></div>
                             <div>Watchlist</div>
                         </div>
-                        <p className="text-text-gray text-[0.9rem] md:text-[1rem]">
+                        <p className="text-text-gray text-[0.9rem] md:text-[1rem] font-light">
                             Save movies you'd like to watch later.
                         </p>
                     </li>
                     <li className="space-y-3">
                         <div className="flex items-center gap-3 text-lg">
-                            <div className="h-[25px] w-[3px] bg-text-secondary rounded-xl"></div>
+                            <div className="h-[25px] w-[3px] bg-text-secondary rounded-2xl"></div>
                             <div>Favorites</div>
                         </div>
-                        <p className="text-text-gray text-[0.9rem] md:text-[1rem]">
+                        <p className="text-text-gray text-[0.9rem] md:text-[1rem] font-light">
                             Keep the movies that really caught your attention.
                         </p>
                     </li>
                     <li className="space-y-3">
                         <div className="flex items-center gap-3 text-lg">
-                            <div className="h-[25px] w-[3px] bg-text-secondary rounded-xl"></div>
+                            <div className="h-[25px] w-[3px] bg-text-secondary rounded-2xl"></div>
                             <div>Cross-Device Sync</div>
                         </div>
-                        <p className="text-text-gray text-[0.9rem] md:text-[1rem]">
+                        <p className="text-text-gray text-[0.9rem] md:text-[1rem] font-light">
                             Access personal data across devices with ease.
                         </p>
                     </li>
