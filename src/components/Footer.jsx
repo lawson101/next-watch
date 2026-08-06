@@ -7,7 +7,7 @@ import Form from "./Form.jsx";
 const Footer = () => {
     const location = useLocation();
     return (
-        <footer className="bg-background py-8 px-4 text-text mt-7">
+        <footer className="bg-background py-8 px-4 text-text mt-5">
             <div className="container text-center mx-auto md:px-16 lg:px-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {/* Brand Section */}
                 <div>
@@ -22,7 +22,9 @@ const Footer = () => {
 
                 {/* Quick Navigation Links */}
                 <div className="font-bold">
-                    <h4 className="text-lg mb-4 font-bold">Quick Navigation</h4>
+                    <h4 className="uppercase mb-4 font-bold text-text-secondary text-sm">
+                        Quick Navigation
+                    </h4>
                     <ul className="space-y-3 w-fit mx-auto text-text-gray">
                         <li>
                             <Link
@@ -53,31 +55,34 @@ const Footer = () => {
 
                 {/* Social Links & Contact Form */}
                 <div className="mb-4 md:col-span-2 lg:col-span-1">
-                    <h4 className="text-lg font-bold mb-4">
+                    <h4 className="uppercase mb-4 font-bold text-text-secondary text-sm">
                         Wanna keep in touch?
                     </h4>
                     <div className="flex gap-5 justify-center text-text-gray">
-                        <a
-                            href="https://github.com/lawson101"
-                            target="_blank"
-                            className="hover:text-text-secondary transition duration-300"
-                        >
-                            <FaGithub size={24} />
-                        </a>
-                        <a
-                            href="https://www.linkedin.com/in/lawson-ishikaku-314758370/"
-                            target="_blank"
-                            className="hover:text-text-secondary transition duration-300"
-                        >
-                            <FaLinkedin size={24} />
-                        </a>
-                        <a
-                            href="https://twitter.com/_lawson101"
-                            target="_blank"
-                            className="hover:text-text-secondary transition duration-300"
-                        >
-                            <FaXTwitter size={24} />
-                        </a>
+                        {[
+                            {
+                                icon: <FaGithub size={18} />,
+                                url: "https://github.com/lawson101",
+                            },
+                            {
+                                icon: <FaLinkedin size={18} />,
+                                url: "https://www.linkedin.com/in/lawson-ishikaku-314758370/",
+                            },
+                            {
+                                icon: <FaXTwitter size={18} />,
+                                url: "https://twitter.com/_lawson101",
+                            },
+                        ].map((social, idx) => (
+                            <a
+                                key={idx}
+                                href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex p-2 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-gray transition-all duration-300 hover:-translate-y-1 hover:border-text-secondary hover:bg-text-secondary/10 hover:text-white"
+                            >
+                                {social.icon}
+                            </a>
+                        ))}
                     </div>
 
                     <Form />
