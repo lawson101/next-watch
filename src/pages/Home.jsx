@@ -117,11 +117,11 @@ const Home = () => {
         <div className="bg-background text-text min-h-screen max-[475px]:px-4 px-7 md:px-8 py-5 space-y-10 md:space-y-15">
             <div className="flex flex-col lg:flex-row gap-5">
                 <div className="flex-1 rounded-2xl">
-                    <div className="w-full h-full relative group overflow-hidden rounded-2xl shadow-[3px_2px_10px_0px_rgba(255,255,255,0.15)] shadow-text-gray/10">
+                    <div className="w-full h-full relative group overflow-hidden rounded-2xl shadow-[2px_2px_10px_0px_rgba(255,255,255,0.15)] shadow-text-gray/10">
                         <img
                             src={temp?.image_url}
                             alt={temp?.title}
-                            className="w-full h-full min-h-75 md:min-h-100 lg:min-h-130 object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="w-full h-full min-h-80 md:min-h-100 lg:min-h-130 object-cover transition-transform duration-500 group-hover:scale-105"
                         />
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>

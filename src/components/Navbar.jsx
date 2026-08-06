@@ -22,7 +22,7 @@ const Navbar = () => {
     }, [hamburgerOpen]);
 
     return (
-        <nav className="bg-surface/60">
+        <nav className="bg-surface/60 relative">
             <div className="relative text-text font-bold max-w-7xl mx-auto px-6 py-2">
                 <div className="flex items-center gap-7 text-sm">
                     {/* Brand and Search bar */}
@@ -306,7 +306,7 @@ const Navbar = () => {
                             </div>
                         </div>
                         <div>
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between gap-3">
                                 <div className="flex items-center gap-3">
                                     <LuTv className="text-text-secondary" />
                                     <Link
