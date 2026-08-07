@@ -114,7 +114,7 @@ const Home = () => {
     }, [trendingDay, index]);
 
     return (
-        <div className="bg-background text-text min-h-screen max-[475px]:px-4 px-7 md:px-8 py-5 space-y-10 md:space-y-15">
+        <div className="bg-background text-text min-h-screen max-[475px]:px-4 px-7 py-5 space-y-10 md:space-y-15">
             <div className="flex flex-col lg:flex-row gap-5">
                 <div className="flex-1 rounded-2xl">
                     <div className="w-full h-full relative group overflow-hidden rounded-2xl shadow-[2px_2px_10px_0px_rgba(255,255,255,0.15)] shadow-text-gray/10">
