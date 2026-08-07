@@ -4,7 +4,7 @@ import { FaStar } from "react-icons/fa";
 const MediaCard = ({ media }) => {
     return (
         <div className="relative group border border-text-gray/20 text-text rounded-2xl transition duration-300">
-            <Link className="block w-full h-50 md:h-64 relative rounded-t-2xl overflow-hidden">
+            <Link className="block w-full h-52 md:h-64 relative rounded-t-2xl overflow-hidden">
                 <img
                     src={media.poster_url}
                     className="w-full h-full rounded-t-2xl transition duration-500 group-hover:scale-105 cursor-pointer"

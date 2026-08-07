@@ -45,7 +45,7 @@ const MediaCarousel = ({ children }) => {
     }, [children]);
 
     return (
-        <div className="relative">
+        <div className="relative min-h-50">
             {canScrollLeft && (
                 <button
                     onClick={scrollLeft}

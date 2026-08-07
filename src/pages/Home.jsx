@@ -256,10 +256,10 @@ const Home = () => {
 
             <div className="space-y-10">
                 <div className="min-h-60">
-                    <div className="flex mb-4 text-text-secondary">
+                    <div className="flex mb-4">
                         <Link
                             to={`${popularFilter === "movie" ? "movie" : "tv"}/popular`}
-                            className="flex items-center group"
+                            className="flex items-center group  text-text-secondary"
                         >
                             <h3 className="font-bold md:text-xl">
                                 Fan Favorites
@@ -300,10 +300,10 @@ const Home = () => {
                     </MediaCarousel>
                 </div>
                 <div className="min-h-60">
-                    <div className="flex mb-4 text-text-secondary">
+                    <div className="flex mb-4">
                         <Link
                             to={`${topFilter === "movie" ? "movie" : "tv"}/top_rated`}
-                            className="flex items-center group"
+                            className="flex items-center group text-text-secondary"
                         >
                             <h3 className="font-bold md:text-xl">
                                 Our Top Picks

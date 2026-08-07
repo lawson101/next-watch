@@ -138,7 +138,7 @@ const Navbar = () => {
                                         </li>
 
                                         <li className="hover:text-text-secondary transition cursor-pointer">
-                                            <Link to="tv/on_the_air">
+                                            <Link to="tv/on_air">
                                                 On the Air
                                             </Link>
                                         </li>

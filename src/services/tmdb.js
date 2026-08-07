@@ -74,7 +74,9 @@ export function filterMedia(media_list) {
         "wwe summerslam 2026: saturday",
         "wwe summerslam 2026: sunday",
         "the shards",
-        "my life with the walter boys"
+        "my life with the walter boys",
+        "au bonheur des dames",
+        "a winter sun wakes the wind in spring hills' dream"
     ];
     return media_list.filter(
         (media) => !exclude.includes(media.title.toLowerCase()),

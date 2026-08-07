@@ -14,7 +14,7 @@ const Footer = () => {
                     <h3 className="text-2xl text-text-secondary font-bold font-montserrat">
                         n/w
                     </h3>
-                    <p className="mt-4 text-[0.9rem] text-text-gray">
+                    <p className="mt-4 text-[0.9rem] text-text-gray max-w-80 md:max-w-90 mx-auto">
                         "Search for movies, explore details, and get linked to
                         where you can watch or download it".
                     </p>
@@ -78,7 +78,7 @@ const Footer = () => {
                                 href={social.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex p-2 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-gray transition-all duration-300 hover:-translate-y-1 hover:border-text-secondary hover:bg-text-secondary/10 hover:text-white"
+                                className="flex p-2 items-center justify-center rounded-xl bg-white/5 border border-text/10 text-text-gray transition-all duration-300 hover:-translate-y-1 hover:border-text-secondary hover:bg-text-secondary/10 hover:text-text"
                             >
                                 {social.icon}
                             </a>
