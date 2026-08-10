@@ -26,12 +26,38 @@ const Movie = () => {
                 getNowPlayingMovies(),
                 getUpcomingMovies(),
             ]).then(([result1, result2, result3, result4]) => {
-                setPopularMovies(filterMedia(getMediaData(result1?.results)));
-                setTopRatedMovies(filterMedia(getMediaData(result2?.results)));
-                setNowPlayingMovies(
-                    filterMedia(getMediaData(result3?.results)),
+                setPopularMovies(
+                    filterMedia(getMediaData(result1?.results)).map(
+                        (media) => ({
+                            ...media,
+                            media_type: "movie",
+                        }),
+                    ),
                 );
-                setUpcomingMovies(filterMedia(getMediaData(result4?.results)));
+                setTopRatedMovies(
+                    filterMedia(getMediaData(result2?.results)).map(
+                        (media) => ({
+                            ...media,
+                            media_type: "movie",
+                        }),
+                    ),
+                );
+                setNowPlayingMovies(
+                    filterMedia(getMediaData(result3?.results)).map(
+                        (media) => ({
+                            ...media,
+                            media_type: "movie",
+                        }),
+                    ),
+                );
+                setUpcomingMovies(
+                    filterMedia(getMediaData(result4?.results)).map(
+                        (media) => ({
+                            ...media,
+                            media_type: "movie",
+                        }),
+                    ),
+                );
             });
         }
         loadMedia();
@@ -40,29 +66,43 @@ const Movie = () => {
     return (
         <div className="min-h-screen text-text max-[475px]:px-4 px-7 md:px-8 py-8 space-y-8 md:space-y-10">
             <div>
-                <Link to="popular/" className="flex items-center group text-text-secondary mb-5">
-                    <h3 className="font-bold md:text-xl">Popular Movies</h3>
+                <Link
+                    to="popular/"
+                    className="flex items-center group text-text-secondary mb-5 w-fit"
+                >
+                    <h3 className="font-bold md:text-xl">Popular</h3>
                     <LuChevronRight className="text-xl md:text-2xl group-hover:text-text-gray transition duration-300" />
                 </Link>
                 <MediaCarousel>{displayCards(popularMovies, 8)}</MediaCarousel>
             </div>
             <div>
-                <Link to="top_rated/" className="flex items-center group text-text-secondary mb-5">
-                    <h3 className="font-bold md:text-xl">Top Rated Movies</h3>
+                <Link
+                    to="top_rated/"
+                    className="flex items-center group text-text-secondary mb-5 w-fit"
+                >
+                    <h3 className="font-bold md:text-xl">Top Rated</h3>
                     <LuChevronRight className="text-xl md:text-2xl group-hover:text-text-gray transition duration-300" />
                 </Link>
                 <MediaCarousel>{displayCards(topRatedMovies, 8)}</MediaCarousel>
             </div>
             <div>
-                <Link to="now_playing/" className="flex items-center group text-text-secondary mb-5">
-                    <h3 className="font-bold md:text-xl">Now Playing Movies</h3>
+                <Link
+                    to="now_playing/"
+                    className="flex items-center group text-text-secondary mb-5 w-fit"
+                >
+                    <h3 className="font-bold md:text-xl">Now Playing</h3>
                     <LuChevronRight className="text-xl md:text-2xl group-hover:text-text-gray transition duration-300" />
                 </Link>
-                <MediaCarousel>{displayCards(nowPlayingMovies, 8)}</MediaCarousel>
+                <MediaCarousel>
+                    {displayCards(nowPlayingMovies, 8)}
+                </MediaCarousel>
             </div>
             <div>
-                <Link to="upcoming/" className="flex items-center group text-text-secondary mb-5">
-                    <h3 className="font-bold md:text-xl">Upcoming Movies</h3>
+                <Link
+                    to="upcoming/"
+                    className="flex items-center group text-text-secondary mb-5 w-fit"
+                >
+                    <h3 className="font-bold md:text-xl">Upcoming</h3>
                     <LuChevronRight className="text-xl md:text-2xl group-hover:text-text-gray transition duration-300" />
                 </Link>
                 <MediaCarousel>{displayCards(upcomingMovies, 8)}</MediaCarousel>

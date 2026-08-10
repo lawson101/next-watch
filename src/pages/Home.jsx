@@ -26,7 +26,7 @@ const Home = () => {
     const [topRatedShows, setTopRatedShows] = useState([]);
     const [popularFilter, setPopularFilter] = useState("movie");
     const [topFilter, setTopFilter] = useState("movie");
-    const [temp, setTemp] = useState({});
+    const [currentMedia, setCurrentMedia] = useState(null);
     const [index, setIndex] = useState(0);
     const increment = () => setIndex((prev) => prev + 1);
     const decrement = () => setIndex((prev) => prev - 1);
@@ -56,7 +56,9 @@ const Home = () => {
                             ),
                         );
                         setTrendingWeek(
-                            filterMedia(getMediaData(result2?.results)),
+                            filterMedia(getMediaData(result2?.results)).filter(
+                                (media) => media.rating > 5,
+                            ),
                         );
                         setPopularMovies(
                             filterMedia(getMediaData(result3?.results)).map(
@@ -110,7 +112,7 @@ const Home = () => {
     }, [trendingDay, index, increment]);
 
     useEffect(() => {
-        setTemp(trendingDay[index]);
+        setCurrentMedia(trendingDay[index]);
     }, [trendingDay, index]);
 
     return (
@@ -119,8 +121,8 @@ const Home = () => {
                 <div className="flex-1 rounded-2xl">
                     <div className="w-full h-full relative group overflow-hidden rounded-2xl shadow-[2px_2px_10px_0px_rgba(255,255,255,0.15)] shadow-text-gray/10">
                         <img
-                            src={temp?.image_url}
-                            alt={temp?.title}
+                            src={currentMedia?.image_url}
+                            alt={currentMedia?.title}
                             className="w-full h-full min-h-80 md:min-h-100 lg:min-h-130 object-cover transition-transform duration-500 group-hover:scale-105"
                         />
 
@@ -156,31 +158,31 @@ const Home = () => {
                             <div className="relative">
                                 <Link>
                                     <img
-                                        src={temp?.poster_url}
-                                        alt={temp?.title}
+                                        src={currentMedia?.poster_url}
+                                        alt={currentMedia?.title}
                                         className="max-[475px]:min-w-28 max-[475px]:h-37 min-w-30 h-40 md:min-w-45 md:min-h-55 lg:w-48 lg:min-h-63 rounded-2xl border border-white/10"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent rounded-2xl"></div>
                                 </Link>
 
-                                {temp?.rating && (
+                                {currentMedia?.rating && (
                                     <div className="absolute right-3 bottom-3 md:right-5 md:bottom-5 flex items-center gap-2 bg-black/60 px-2 py-1 rounded-xl font-bold">
                                         <FaStar className="text-text-secondary text-sm md:text-base" />
                                         <span className="text-[0.7rem] md:text-[0.9rem]">
-                                            {temp?.rating}
+                                            {currentMedia?.rating}
                                         </span>
                                     </div>
                                 )}
                             </div>
                             <div className="space-y-2 md:space-y-3 flex-1 pb-2 pr-1">
                                 <h2 className="text-[1rem] md:text-2xl font-bold text-white line-clamp-1">
-                                    <Link>{temp?.title}</Link>
+                                    <Link>{currentMedia?.title}</Link>
                                 </h2>
                                 <div className="flex flex-wrap gap-2">
-                                    {temp?.genres?.map((genre, index) => {
+                                    {currentMedia?.genres?.map((genre, index) => {
                                         return (
                                             <span
-                                                key={temp?.genre_ids[index]}
+                                                key={currentMedia?.genre_ids[index]}
                                                 className={`${index > 1 && "hidden sm:inline-block"} bg-text-gray/10 backdrop-blur-md text-[9px] md:text-[12px] uppercase font-bold px-2 py-1 rounded-md text-gray-200 border border-white/5`}
                                             >
                                                 {genre}
@@ -190,7 +192,7 @@ const Home = () => {
                                 </div>
 
                                 <p className="max-[475px]:max-w-[90%] max-w-[85%] text-[12px] md:text-[15px] leading-relaxed text-gray-300 line-clamp-2 md:line-clamp-3">
-                                    {temp?.overview}
+                                    {currentMedia?.overview}
                                 </p>
                             </div>
                         </div>
@@ -306,7 +308,7 @@ const Home = () => {
                             className="flex items-center group text-text-secondary"
                         >
                             <h3 className="font-bold md:text-xl">
-                                Our Top Picks
+                                Top Picks
                             </h3>
                             <LuChevronRight className="text-xl md:text-2xl group-hover:text-text-gray transition duration-300" />
                         </Link>

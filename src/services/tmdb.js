@@ -9,7 +9,7 @@ const options = {
 const movieResponse = (await getGenres("movie"))?.genres;
 const tvResponse = (await getGenres("tv"))?.genres;
 
-async function fetchTMDB(path, params = {}) {
+export async function fetchTMDB(path, params = {}) {
     const query = new URLSearchParams(params);
     try {
         const response = await fetch(`${BASE_URL}${path}?${query}`, options);
@@ -76,7 +76,7 @@ export function filterMedia(media_list) {
         "the shards",
         "my life with the walter boys",
         "au bonheur des dames",
-        "a winter sun wakes the wind in spring hills' dream"
+        "a winter sun wakes the wind in spring hills' dream",
     ];
     return media_list.filter(
         (media) => !exclude.includes(media.title.toLowerCase()),
@@ -108,6 +108,33 @@ export function getMediaData(response) {
         rating: media.vote_average.toFixed(1),
         overview: media.overview,
     }));
+}
+
+// I have a function for extracting data from a response but there is a problem...
+// 1. The data to be displayed for movies and for TV Shows are different.
+// 2. The response needed from a category is an array while the one needed for a specific media fetch is an object
+
+export function getMovieDetails() {}
+
+export function getTvDetails(response) {
+    return {
+        id: response.id,
+        name: response.name,
+        image_url: `https://image.tmdb.org/t/p/original${response.backdrop_path}`,
+        poster_url: `https://image.tmdb.org/t/p/w342${response.poster_path}`,
+        overview: response.overview,
+        genres: response.genres.map((genre) => genre.name),
+        rating: response.vote_average,
+        first_air_date: response.first_air_date,
+        seasons_no: response.number_of_seasons,
+        episodes_no: response.number_of_episodes,
+        status: response.status,
+        created_by: response.created_by.map((idx) => idx.name),
+        cast: response.credits.cast.reduce((obj, currentVal) => {
+            return obj[currentVal.name] = currentVal.character;
+        }, {}),
+
+    };
 }
 
 // Trending by Day and Week

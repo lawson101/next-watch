@@ -52,7 +52,7 @@ const Form = () => {
             <button
                 type="submit"
                 disabled={state.submitting}
-                className="flex items-center gap-2 justify-center w-full border border-text-gray/50 font-bold py-2.5 rounded-xl bg-background text-text-secondary/80 hover:text-text-secondary transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-surface/60"
+                className="flex items-center gap-2 justify-center w-full border border-text-gray/50 font-bold py-2.5 rounded-xl bg-background text-text-secondary hover:border-text-secondary/50 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-surface/60"
             >
                 {state.submitting
                     ? "3... 2... 1... Lift off!"

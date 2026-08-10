@@ -6,10 +6,10 @@ const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <div className="min-h-screen bg-background text-text grid grid-cols-1 lg:grid-cols-2 lg:gap-40 gap-10 py-10 px-8 md:px-12 lg:px-22 font-bold">
-            <div className="space-y-12">
+        <div className="min-h-screen bg-background text-text grid grid-cols-1 lg:grid-cols-2 p-7 md:px-20 md:py-10 gap-10 md:gap-20 lg:gap-30 font-bold">
+            <div className="flex flex-col justify-between h-[65vh]">
                 <div className="space-y-3">
-                    <div className="font-bold text-3xl">Welcome Back!</div>
+                    <div className="text-2xl md:text-3xl">Welcome Back!</div>
                     <p className="text-text-gray">It's been a while...</p>
                 </div>
 
@@ -68,12 +68,14 @@ const SignIn = () => {
                     </Link>
                 </div>
             </div>
-            <div className="mt-10 lg:mt-0">
-                <div className="text-xl mb-7">Get access to...</div>
+            <div>
+                <div className="text-[1.1rem] md:text-[1.15rem] text-text-secondary mb-5">
+                    Get access to...
+                </div>
 
                 <ul className="space-y-5">
-                    <li className="space-y-3">
-                        <div className="flex items-center gap-3 text-lg">
+                    <li className="space-y-2">
+                        <div className="flex items-center gap-3 text-[1rem] md:text-[1.1rem]">
                             <div className="h-[25px] w-[3px] bg-text-secondary rounded-2xl"></div>
                             <div>Watchlist</div>
                         </div>
@@ -81,8 +83,8 @@ const SignIn = () => {
                             Save movies you'd like to watch later.
                         </p>
                     </li>
-                    <li className="space-y-3">
-                        <div className="flex items-center gap-3 text-lg">
+                    <li className="space-y-2">
+                        <div className="flex items-center gap-3 text-[1rem] md:text-[1.1rem]">
                             <div className="h-[25px] w-[3px] bg-text-secondary rounded-2xl"></div>
                             <div>Favorites</div>
                         </div>
@@ -90,8 +92,8 @@ const SignIn = () => {
                             Keep the movies that really caught your attention.
                         </p>
                     </li>
-                    <li className="space-y-3">
-                        <div className="flex items-center gap-3 text-lg">
+                    <li className="space-y-2">
+                        <div className="flex items-center gap-3 text-[1rem] md:text-[1.1rem]">
                             <div className="h-[25px] w-[3px] bg-text-secondary rounded-2xl"></div>
                             <div>Cross-Device Sync</div>
                         </div>

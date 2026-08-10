@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { LuTv, LuSearch } from "react-icons/lu";
 import { FaClapperboard } from "react-icons/fa6";
 import { FaFilm, FaBars, FaChevronDown } from "react-icons/fa";
@@ -9,27 +9,42 @@ import { IoHeart, IoBookmark } from "react-icons/io5";
 const Navbar = () => {
     const { user } = useAuth();
     const location = useLocation();
-    const [hamburgerOpen, setHamburgerOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const [movieOpen, setMovieOpen] = useState(false);
     const [tvOpen, setTvOpen] = useState(false);
     const [profileOpen, setProfileOpen] = useState(false);
+    const dropdownRef = useRef(null);
 
     useEffect(() => {
-        if (!hamburgerOpen) {
+        if (!dropdownOpen) {
             setMovieOpen(false);
             setTvOpen(false);
         }
-    }, [hamburgerOpen]);
 
+        const handleOutsideClick = (event) => {
+            if (
+                dropdownOpen &&
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)
+            ) {
+                setDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleOutsideClick);
+        document.addEventListener("touchstart", handleOutsideClick);
+
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick);
+            document.removeEventListener("touchstart", handleOutsideClick);
+        };
+    }, [dropdownOpen]);
     return (
         <nav className="bg-surface/60 relative">
             <div className="relative text-text font-bold max-w-7xl mx-auto px-6 py-2">
                 <div className="flex items-center gap-7 text-sm">
                     {/* Brand and Search bar */}
-                    <div
-                        onClick={() => setHamburgerOpen(false)}
-                        className="flex items-center gap-7 flex-1 min-w-0"
-                    >
+                    <div className="flex items-center gap-7 flex-1 min-w-0">
                         <div className="font-bold font-montserrat text-lg text-text-secondary transition duration-300">
                             <Link to="/">n/w</Link>
                         </div>
@@ -225,198 +240,219 @@ const Navbar = () => {
                         )}
                     </div>
 
-                    {/* Hamburger */}
-                    <div className="md:hidden">
-                        <button
-                            onClick={() => setHamburgerOpen(!hamburgerOpen)}
-                            className="text-2xl my-2 text-text-secondary"
-                        >
-                            {hamburgerOpen ? (
-                                <FaBars className="transform rotate-135 transition duration-300" />
-                            ) : (
-                                <FaBars className="transition duration-300" />
-                            )}
-                        </button>
-                    </div>
-                </div>
-
-                {/* Dropdown */}
-                <div
-                    className={`absolute md:hidden mt-3 right-0 w-fit p-4 z-1000 bg-surface rounded-2xl transition duration-300"
-                    ${
-                        hamburgerOpen
-                            ? "opacity-100 translate-y-0 visible"
-                            : "opacity-10 -translate-y-2 invisible"
-                    }`}
-                >
-                    <div className="flex flex-col gap-5 bg-background border border-text-gray py-6 px-5 rounded-2xl text-sm">
-                        <div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <FaFilm className="text-text-secondary" />
-                                    <Link
-                                        to="/movie"
-                                        onClick={() => setHamburgerOpen(false)}
-                                        className={`transition duration-300 ${location.pathname === "/movie" && "text-text-secondary"}`}
-                                    >
-                                        Movies
-                                    </Link>
-                                </div>
-                                <FaChevronDown
-                                    onClick={() => setMovieOpen(!movieOpen)}
-                                    className={`${movieOpen ? "transform rotate-75 text-text-gray" : "text-text-secondary"} transition duration-300`}
-                                />
-                            </div>
-                            <div
-                                className={`${!movieOpen && "hidden"} pt-4 transition duration-300`}
+                    <div ref={dropdownRef}>
+                        {/* hamburger */}
+                        <div className="md:hidden">
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setDropdownOpen(!dropdownOpen);
+                                }}
+                                className="text-2xl my-2 text-text-secondary"
                             >
-                                <ul className="space-y-3 text-text-gray">
-                                    <li
-                                        onClick={() =>
-                                            setHamburgerOpen(!hamburgerOpen)
-                                        }
-                                    >
-                                        <Link>Popular</Link>
-                                    </li>
-
-                                    <li
-                                        onClick={() =>
-                                            setHamburgerOpen(!hamburgerOpen)
-                                        }
-                                    >
-                                        <Link>Top Rated</Link>
-                                    </li>
-
-                                    <li
-                                        onClick={() =>
-                                            setHamburgerOpen(!hamburgerOpen)
-                                        }
-                                    >
-                                        <Link>Now Playing</Link>
-                                    </li>
-
-                                    <li
-                                        onClick={() =>
-                                            setHamburgerOpen(!hamburgerOpen)
-                                        }
-                                    >
-                                        <Link>Upcoming</Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="flex items-center justify-between gap-3">
-                                <div className="flex items-center gap-3">
-                                    <LuTv className="text-text-secondary" />
-                                    <Link
-                                        to="/tv"
-                                        onClick={() => setHamburgerOpen(false)}
-                                        className={`transition duration-300 ${location.pathname === "/tv" && "text-text-secondary"}`}
-                                    >
-                                        TV Shows
-                                    </Link>
-                                </div>
-                                <FaChevronDown
-                                    onClick={() => setTvOpen(!tvOpen)}
-                                    className={`${tvOpen ? "transform rotate-75 text-text-gray" : "text-text-secondary"} transition duration-300`}
-                                />
-                            </div>
-                            <div
-                                className={`${!tvOpen && "hidden"} pt-4 transition duration-300`}
-                            >
-                                <ul className="space-y-3 text-text-gray">
-                                    <li
-                                        onClick={() =>
-                                            setHamburgerOpen(!hamburgerOpen)
-                                        }
-                                    >
-                                        <Link>Popular</Link>
-                                    </li>
-
-                                    <li
-                                        onClick={() =>
-                                            setHamburgerOpen(!hamburgerOpen)
-                                        }
-                                    >
-                                        <Link>Top Rated</Link>
-                                    </li>
-
-                                    <li
-                                        onClick={() =>
-                                            setHamburgerOpen(!hamburgerOpen)
-                                        }
-                                    >
-                                        <Link>Airing Today</Link>
-                                    </li>
-
-                                    <li
-                                        onClick={() =>
-                                            setHamburgerOpen(!hamburgerOpen)
-                                        }
-                                    >
-                                        <Link>On the Air</Link>
-                                    </li>
-                                </ul>
-                            </div>
+                                {dropdownOpen ? (
+                                    <FaBars className="transform rotate-135 transition duration-300" />
+                                ) : (
+                                    <FaBars className="transition duration-300" />
+                                )}
+                            </button>
                         </div>
 
-                        <div>
-                            <div className="flex items-center gap-3">
-                                <FaClapperboard className="text-text-secondary" />
-                                <Link
-                                    to="/trending"
-                                    onClick={() => setHamburgerOpen(false)}
-                                    className={`transition duration-300 ${location.pathname === "/trending" && "text-text-secondary"}`}
-                                >
-                                    Trending
-                                </Link>
-                            </div>
-                        </div>
-
-                        <div className="h-[2px] w-full bg-text-secondary rounded-xl"></div>
-
-                        {user && (
-                            <div>
-                                <ul className="space-y-4 text-[0.9rem]">
-                                    <li
-                                        onClick={() => setHamburgerOpen(false)}
-                                        className={`flex items-center gap-3 transition duration-300 ${location.pathname === "/favorites" && "text-text-secondary"}`}
-                                    >
-                                        <IoHeart className="text-text-secondary text-[1rem]" />
-                                        <Link to="/favorites">Favorites</Link>
-                                    </li>
-
-                                    <li
-                                        onClick={() => setHamburgerOpen(false)}
-                                        className={`flex items-center gap-3 transition duration-300 ${location.pathname === "/watchlist" && "text-text-secondary"}`}
-                                    >
-                                        <IoBookmark className="text-text-secondary" />
-                                        <Link to="/watchlist">Watchlist</Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        )}
-
+                        {/* Dropdown */}
                         <div
-                            className={`h-[2px] w-full ${!user && "hidden"} bg-text-secondary rounded-xl`}
-                        ></div>
-                        {user ? (
-                            <Link
-                                to="/profile"
-                                className="text-center px-6 py-2 w-full bg-surface rounded-xl transition duration-300 hover:text-text-secondary"
-                            >
-                                {user.username}
-                            </Link>
-                        ) : (
-                            <Link
-                                to="/signin"
-                                onClick={() => setHamburgerOpen(false)}
-                                className="text-center px-6 py-2 w-full bg-surface rounded-xl transition duration-300 hover:text-text-secondary"
-                            >
-                                Sign In
-                            </Link>
-                        )}
+                            className={`absolute md:hidden mt-3 right-0 w-fit p-4 z-1000 bg-surface rounded-2xl transition duration-300"
+                        ${
+                            dropdownOpen
+                                ? "opacity-100 translate-y-0 visible"
+                                : "opacity-10 -translate-y-2 invisible"
+                        }`}
+                        >
+                            <div className="flex flex-col gap-5 bg-background border border-text-gray py-6 px-5 rounded-2xl text-sm">
+                                <div>
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-3">
+                                            <FaFilm className="text-text-secondary" />
+                                            <Link
+                                                to="/movie"
+                                                onClick={() =>
+                                                    setDropdownOpen(false)
+                                                }
+                                                className={`transition duration-300 ${location.pathname === "/movie" && "text-text-secondary"}`}
+                                            >
+                                                Movies
+                                            </Link>
+                                        </div>
+                                        <FaChevronDown
+                                            onClick={() =>
+                                                setMovieOpen(!movieOpen)
+                                            }
+                                            className={`${movieOpen ? "transform rotate-75 text-text-gray" : "text-text-secondary"} transition duration-300`}
+                                        />
+                                    </div>
+                                    <div
+                                        className={`${!movieOpen && "hidden"} pt-4 transition duration-300`}
+                                    >
+                                        <ul className="space-y-3 text-text-gray">
+                                            <li
+                                                onClick={() =>
+                                                    setDropdownOpen(false)
+                                                }
+                                            >
+                                                <Link>Popular</Link>
+                                            </li>
+
+                                            <li
+                                                onClick={() =>
+                                                    setDropdownOpen(false)
+                                                }
+                                            >
+                                                <Link>Top Rated</Link>
+                                            </li>
+
+                                            <li
+                                                onClick={() =>
+                                                    setDropdownOpen(false)
+                                                }
+                                            >
+                                                <Link>Now Playing</Link>
+                                            </li>
+
+                                            <li
+                                                onClick={() =>
+                                                    setDropdownOpen(false)
+                                                }
+                                            >
+                                                <Link>Upcoming</Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center justify-between gap-3">
+                                        <div className="flex items-center gap-3">
+                                            <LuTv className="text-text-secondary" />
+                                            <Link
+                                                to="/tv"
+                                                onClick={() =>
+                                                    setDropdownOpen(false)
+                                                }
+                                                className={`transition duration-300 ${location.pathname === "/tv" && "text-text-secondary"}`}
+                                            >
+                                                TV Shows
+                                            </Link>
+                                        </div>
+                                        <FaChevronDown
+                                            onClick={() => setTvOpen(!tvOpen)}
+                                            className={`${tvOpen ? "transform rotate-75 text-text-gray" : "text-text-secondary"} transition duration-300`}
+                                        />
+                                    </div>
+                                    <div
+                                        className={`${!tvOpen && "hidden"} pt-4 transition duration-300`}
+                                    >
+                                        <ul className="space-y-3 text-text-gray">
+                                            <li
+                                                onClick={() =>
+                                                    setDropdownOpen(false)
+                                                }
+                                            >
+                                                <Link>Popular</Link>
+                                            </li>
+
+                                            <li
+                                                onClick={() =>
+                                                    setDropdownOpen(false)
+                                                }
+                                            >
+                                                <Link>Top Rated</Link>
+                                            </li>
+
+                                            <li
+                                                onClick={() =>
+                                                    setDropdownOpen(false)
+                                                }
+                                            >
+                                                <Link>Airing Today</Link>
+                                            </li>
+
+                                            <li
+                                                onClick={() =>
+                                                    setDropdownOpen(false)
+                                                }
+                                            >
+                                                <Link>On the Air</Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div className="flex items-center gap-3">
+                                        <FaClapperboard className="text-text-secondary" />
+                                        <Link
+                                            to="/trending"
+                                            onClick={() =>
+                                                setDropdownOpen(false)
+                                            }
+                                            className={`transition duration-300 ${location.pathname === "/trending" && "text-text-secondary"}`}
+                                        >
+                                            Trending
+                                        </Link>
+                                    </div>
+                                </div>
+
+                                <div className="h-[2px] w-full bg-text-secondary rounded-xl"></div>
+
+                                {user && (
+                                    <div>
+                                        <ul className="space-y-4 text-[0.9rem]">
+                                            <li
+                                                onClick={() =>
+                                                    setDropdownOpen(false)
+                                                }
+                                                className={`flex items-center gap-3 transition duration-300 ${location.pathname === "/favorites" && "text-text-secondary"}`}
+                                            >
+                                                <IoHeart className="text-text-secondary text-[1rem]" />
+                                                <Link to="/favorites">
+                                                    Favorites
+                                                </Link>
+                                            </li>
+
+                                            <li
+                                                onClick={() =>
+                                                    setDropdownOpen(false)
+                                                }
+                                                className={`flex items-center gap-3 transition duration-300 ${location.pathname === "/watchlist" && "text-text-secondary"}`}
+                                            >
+                                                <IoBookmark className="text-text-secondary" />
+                                                <Link to="/watchlist">
+                                                    Watchlist
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
+
+                                <div
+                                    className={`h-[2px] w-full ${!user && "hidden"} bg-text-secondary rounded-xl`}
+                                ></div>
+                                {user ? (
+                                    <Link
+                                        to="/profile"
+                                        className="text-center px-6 py-2 w-full bg-surface rounded-xl transition duration-300 hover:text-text-secondary"
+                                    >
+                                        {user.username}
+                                    </Link>
+                                ) : (
+                                    <Link
+                                        to="/signin"
+                                        onClick={() => setDropdownOpen(false)}
+                                        className="text-center px-6 py-2 w-full bg-surface rounded-xl transition duration-300 hover:text-text-secondary"
+                                    >
+                                        Sign In
+                                    </Link>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
