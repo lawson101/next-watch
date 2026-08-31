@@ -12,7 +12,7 @@ const SignUp = () => {
                     <div className="text-2xl md:text-3xl font-bold">
                         Ready to Sign Up?
                     </div>
-                    <p className="text-sm md:text-base text-text-gray">Took you long enough.</p>
+                    <p className="text-text-gray">Took you long enough.</p>
                 </div>
 
                 <form className="space-y-5 text-sm w-full">
@@ -71,6 +71,7 @@ const SignUp = () => {
                             type="checkbox"
                             name="terms"
                             id="terms"
+                            className="w-6 md:w-5 h-[18px] md:h-5"
                             required
                         />
                         <p className="text-[0.8rem] md:text-sm">

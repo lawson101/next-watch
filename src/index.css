@@ -15,7 +15,7 @@
 
     /* Backgrounds */
     --color-background: #000000;
-    --color-surface: #18181B;
+    --color-surface: #18181b;
 
     /* Text */
     --color-text: #ffffff;
@@ -63,16 +63,42 @@ body {
 }
 
 input[type="checkbox"] {
-    width: 0.9rem;
-    height: 0.9rem;
-    accent-color: var(--color-text-secondary);
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    display: inline-grid;
+    place-content: center;
+    vertical-align: middle;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--color-text-secondary);
+    border-color: var(--color-text-secondary);
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    transform: scale(0);
+    transition: transform 0.1s ease-in-out;
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
 }
 
 .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;     /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-    display: none;             /* Chrome, Safari, Opera */
+    display: none;
 }

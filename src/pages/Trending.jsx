@@ -44,7 +44,7 @@ const Trending = () => {
 
     return (
         <div className="bg-background min-h-screen text-text">
-            <div className="mx-auto max-w-7xl py-10 px-7">
+            <div className="mx-auto max-w-7xl py-10 px-4 md:px-7">
                 <div className="flex items-center font-bold">
                     <div className="flex items-center gap-3">
                         <button
@@ -95,7 +95,7 @@ const Trending = () => {
                 </div>
 
                 {hasLoaded ? (
-                    <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(185px,1fr))] gap-4 md:gap-6 py-10">
+                    <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(185px,1fr))] gap-3 md:gap-6 py-10">
                         {displayCards(trending)}
                     </div>
                 ) : (

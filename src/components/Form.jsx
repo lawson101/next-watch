@@ -11,7 +11,7 @@ const Form = () => {
         return (
             <div className="bg-surface/50 border border-text-gray/50 mt-4 text-[0.8rem] w-fit mx-auto px-3 py-2 rounded-lg">
                 <p className="uppercase text-text-secondary">
-                    I've got your message. Thanks.
+                    I've got your message. Thanks!
                 </p>
             </div>
         );

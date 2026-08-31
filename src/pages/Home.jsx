@@ -124,7 +124,7 @@ const Home = () => {
                             key={currentMedia?.id}
                             src={currentMedia?.image_url}
                             alt={currentMedia?.title}
-                            className="w-full h-full min-h-85 md:min-h-100 lg:min-h-130 object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="w-full min-h-90 md:min-h-100 lg:min-h-130 object-cover transition-transform duration-500 group-hover:scale-105"
                         />
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
@@ -181,7 +181,7 @@ const Home = () => {
                                 )}
                             </div>
                             <div className="space-y-2 md:space-y-3 flex-1 pb-2 pr-1">
-                                <h2 className="text-[1.05rem] md:text-2xl font-bold text-white line-clamp-1 w-[90%]">
+                                <h2 className="text-[1rem] md:text-2xl font-bold text-white line-clamp-1 w-[90%]">
                                     <Link
                                         to={`${currentMedia?.media_type}/${currentMedia?.id}`}
                                     >
