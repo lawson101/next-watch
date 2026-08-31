@@ -64,7 +64,7 @@ const Tv = () => {
     }, []);
 
     return (
-        <div className="min-h-screen text-text max-[475px]:px-4 px-7 md:px-8 py-8 space-y-8 md:space-y-10">
+        <div className="min-h-screen text-text max-[475px]:px-4 px-6 md:px-8 py-8 space-y-8 md:space-y-10">
             <div>
                 <Link
                     to="popular/"

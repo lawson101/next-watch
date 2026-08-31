@@ -43,9 +43,9 @@ const Trending = () => {
     }, [allTrending, filter]);
 
     return (
-        <div className="bg-background min-h-screen text-text font-bold">
-            <div className="mx-auto max-w-7xl py-10 px-5 sm:px-8 lg:px-10">
-                <div className="flex items-center">
+        <div className="bg-background min-h-screen text-text">
+            <div className="mx-auto max-w-7xl py-10 px-7">
+                <div className="flex items-center font-bold">
                     <div className="flex items-center gap-3">
                         <button
                             onClick={() => {
@@ -78,7 +78,7 @@ const Trending = () => {
                             </span>
                         </button>
                     </div>
-                    <div className="flex items-center w-fit h-fit ml-auto text-sm border border-surface rounded-2xl">
+                    <div className="flex items-center w-fit h-fit ml-auto text-sm border-[1.5px] border-surface rounded-2xl">
                         <button
                             onClick={() => setToggle(false)}
                             className={`${!toggle && "bg-surface/70 text-text-secondary"} px-4 md:px-6 py-2 rounded-2xl transition duration-300`}
@@ -99,7 +99,7 @@ const Trending = () => {
                         {displayCards(trending)}
                     </div>
                 ) : (
-                    <div className="py-10 px-4 text-text-gray">
+                    <div className="py-10 text-text-gray">
                         Give it a sec...
                     </div>
                 )}

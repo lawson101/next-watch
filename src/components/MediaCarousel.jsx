@@ -24,8 +24,7 @@ const MediaCarousel = ({ children }) => {
 
     const scrollRight = () => {
         scrollRef.current?.scrollBy({
-            left: scrollRef.current.clientWidth,
-            behavior: "smooth",
+            left: scrollRef.current.clientWidth
         });
     };
 
@@ -57,7 +56,7 @@ const MediaCarousel = ({ children }) => {
 
             <div
                 ref={scrollRef}
-                className="grid grid-flow-col auto-cols-[180px] md:auto-cols-[200px] gap-3 font-bold overflow-x-auto scrollbar-hide scroll-smooth"
+                className="grid grid-flow-col auto-cols-[180px] md:auto-cols-[210px] gap-3 overflow-x-auto scrollbar-hide scroll-smooth"
             >
                 {children}
             </div>

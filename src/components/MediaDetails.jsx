@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchTMDB, getMediaData } from "../services/tmdb";
+import { fetchTMDB, getMediaDetails } from "../services/tmdb";
 
 const MediaDetails = () => {
     const { mediaType, id } = useParams();
     const [media, setMedia] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
+    useMemo(() => {
         async function loadMedia() {
             try {
                 const endpoint =
@@ -16,8 +16,7 @@ const MediaDetails = () => {
                         : `/tv/${id}?append_to_response=credits,videos`;
 
                 const data = await fetchTMDB(endpoint);
-                setMedia(data);
-                console.log(data);
+                setMedia(getMediaDetails(data));
                 setLoading(false);
             } catch (error) {
                 console.error(error);
@@ -27,16 +26,16 @@ const MediaDetails = () => {
     }, [mediaType, id]);
 
     return (
-        <div className="text-text min-h-screen px-5 py-10">
+        <div
+            style={{ "--image": `url('${media?.image_url}')` }}
+            className="text-text min-h-screen md:px-10 md:py-10 px-4 py-3 bg-cover bg-center w-full bg-[linear-gradient(to_bottom,rgba(0,0,0,0.9),rgba(0,0,0,0.9),rgba(0,0,0,1)),var(--image)]"
+        >
             {!loading ? (
-                <div>
-                    <img src={media?.poster_url} alt={media?.title} className="w-100 h-100" />
-                    <h1>{media?.title || media?.name}</h1>
-
-                    <p>{media?.overview}</p>
-                </div>
+                <div></div>
             ) : (
-                <div>loading...</div>
+                <div className="py-10 md:py-5 px-4 text-text-gray">
+                    Give it a sec...
+                </div>
             )}
         </div>
     );

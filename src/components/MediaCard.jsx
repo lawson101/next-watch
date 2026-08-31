@@ -6,7 +6,7 @@ const MediaCard = ({ media }) => {
         <div className="relative group border border-text-gray/20 text-text rounded-2xl transition duration-300">
             <Link
                 to={`/${media?.media_type}/${media?.id}`}
-                className="block w-full h-52 md:h-64 relative rounded-t-2xl overflow-hidden"
+                className="block w-full h-56 md:h-66 relative rounded-t-2xl overflow-hidden"
             >
                 <img
                     src={media.poster_url}
@@ -23,7 +23,7 @@ const MediaCard = ({ media }) => {
             </Link>
 
             <div className="relative bg-surface/50 rounded-b-2xl border-t border-text-gray/20 px-4 py-3">
-                <div className="truncate text-[0.85rem] md:text-[0.95rem]">
+                <div className="truncate text-[0.85rem] md:text-[0.95rem] font-bold">
                     <Link to={`/${media?.media_type}/${media?.id}`}>
                         {media.title}
                     </Link>
@@ -32,7 +32,7 @@ const MediaCard = ({ media }) => {
                 <div className="flex items-center justify-between mt-3">
                     <div className="flex items-center gap-2">
                         <FaStar className="text-text-secondary" />
-                        <span className="text-[0.8rem]">{media.rating}</span>
+                        <span className="text-[0.8rem] font-bold mt-[1px]">{media.rating}</span>
                     </div>
                     <div className="bg-black/60 backdrop-blur-md text-xs uppercase px-2.5 py-1 rounded-[5px] tracking-wider text-text-secondary border-1 border-text/10">
                         {media.release_date.slice(0, 4)}

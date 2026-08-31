@@ -49,7 +49,7 @@ const Navbar = () => {
                             <Link to="/">n/w</Link>
                         </div>
                         <div className="flex-1">
-                            <form className="flex items-center gap-5 border border-border/50 rounded-2xl px-4 bg-background focus-within:border-text-secondary/50 transition duration-300">
+                            <form className="flex items-center gap-5 border border-border/50 rounded-2xl px-4 bg-background focus-within:border-text-secondary transition duration-300">
                                 <input
                                     type="text"
                                     id="search"
@@ -446,7 +446,7 @@ const Navbar = () => {
                                     <Link
                                         to="/signin"
                                         onClick={() => setDropdownOpen(false)}
-                                        className="text-center px-6 py-2 w-full bg-surface rounded-xl transition duration-300 hover:text-text-secondary"
+                                        className="text-center px-6 py-2 w-full bg-surface rounded-2xl transition duration-300 hover:text-text-secondary"
                                     >
                                         Sign In
                                     </Link>

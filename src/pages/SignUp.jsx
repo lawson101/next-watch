@@ -6,41 +6,47 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <div className="min-h-screen bg-background text-text grid grid-cols-1 lg:grid-cols-2 py-5 px-7 md:px-20 md:py-8 gap-5 md:gap-20 lg:gap-30 font-bold">
-            <div className="flex flex-col justify-around h-[90vh] md:h-[85vh]">
+        <div className="min-h-screen bg-background text-text grid grid-cols-1 lg:grid-cols-2 px-7 py-10 md:px-20 md:py-10 gap-15 md:gap-20 lg:gap-30">
+            <div className="flex flex-col gap-8 md:gap-10">
                 <div className="space-y-3">
-                    <div className="text-2xl md:text-3xl">
+                    <div className="text-2xl md:text-3xl font-bold">
                         Ready to Sign Up?
                     </div>
-                    <p className="text-text-gray">Took you long enough.</p>
+                    <p className="text-sm md:text-base text-text-gray">Took you long enough.</p>
                 </div>
 
                 <form className="space-y-5 text-sm w-full">
                     <div>
-                        <label className="text-[0.95rem]" htmlFor="username">Username:</label>
+                        <label className="md:text-[0.95rem] font-bold" htmlFor="username">
+                            Username:
+                        </label>
                         <input
                             id="username"
                             type="username"
                             name="username"
                             placeholder="johniscool"
-                            className="block w-full p-3 rounded-2xl border border-border bg-surface mt-3 focus:outline-none focus:ring focus:ring-text-secondary transition duration-300"
+                            className="block w-full p-3 md:p-3 rounded-2xl border-[2px] border-border/50 bg-surface mt-3 focus:outline-none focus:border-[2px] focus:border-text-secondary transition duration-300"
                             required
                         />
                     </div>
                     <div>
-                        <label className="text-[0.95rem]" htmlFor="email">Email:</label>
+                        <label className="md:text-[0.95rem] font-bold" htmlFor="email">
+                            Email:
+                        </label>
                         <input
                             id="email"
                             type="email"
                             name="email"
                             placeholder="johndoe@example.com"
-                            className="block w-full p-3 rounded-2xl border border-border bg-surface mt-3 focus:outline-none focus:ring focus:ring-text-secondary/50 transition duration-300"
+                            className="block w-full p-3 md:p-3 rounded-2xl border-[2px] border-border/50 bg-surface mt-3 focus:outline-none focus:border-[2px] focus:border-text-secondary transition duration-300"
                             required
                         />
                     </div>
                     <div>
-                        <label className="text-[0.95rem]" htmlFor="password">Password:</label>
-                        <div className="w-full flex items-center gap-5 px-3 mt-3 rounded-2xl border border-border bg-surface focus-within:border-text-secondary/50 transition duration-300">
+                        <label className="md:text-[0.95rem] font-bold" htmlFor="password">
+                            Password:
+                        </label>
+                        <div className="w-full flex items-center gap-5 px-3 mt-4 rounded-2xl border-[2px] border-border/50 bg-surface focus-within:border-text-secondary transition duration-300">
                             <input
                                 id="password"
                                 type={showPassword ? "text" : "password"}
@@ -54,13 +60,12 @@ const SignUp = () => {
                                     e.preventDefault();
                                     setShowPassword(!showPassword);
                                 }}
-                                className="text-xl"
+                                className="text-lg md:text-xl"
                             >
                                 {showPassword ? <FiEye /> : <FiEyeOff />}
                             </button>
                         </div>
                     </div>
-
                     <div className="flex items-center gap-3 my-4">
                         <input
                             type="checkbox"
@@ -70,12 +75,12 @@ const SignUp = () => {
                         />
                         <p className="text-[0.8rem] md:text-sm">
                             I have read and agree to the
-                            <Link className="text-text-gray hover:text-text-secondary transition duration-300">
+                            <Link className="font-bold text-text-gray hover:text-text-secondary transition duration-300">
                                 {" "}
                                 Terms & Conditions{" "}
                             </Link>
                             and{" "}
-                            <Link className="text-text-gray hover:text-text-secondary transition duration-300">
+                            <Link className="font-bold text-text-gray hover:text-text-secondary transition duration-300">
                                 Privacy Policy
                             </Link>
                             .
@@ -92,7 +97,7 @@ const SignUp = () => {
                     Already have an account?
                     <Link
                         to="/signin"
-                        className="text-text-gray hover:text-text-secondary transition duration-300"
+                        className="text-text-gray font-bold hover:text-text-secondary transition duration-300"
                     >
                         {" "}
                         Sign In!
@@ -104,11 +109,11 @@ const SignUp = () => {
                     Get access to...
                 </div>
 
-                <ul className="space-y-5">
+                <ul className="space-y-6">
                     <li className="space-y-2">
                         <div className="flex items-center gap-3 text-[1rem] md:text-[1.1rem]">
                             <div className="h-[25px] w-[3px] bg-text-secondary rounded-2xl"></div>
-                            <div>Watchlist</div>
+                            <div className="font-bold">Watchlist</div>
                         </div>
                         <p className="text-text-gray text-[0.9rem] md:text-[1rem] font-light">
                             Save movies you'd like to watch later.
@@ -117,7 +122,7 @@ const SignUp = () => {
                     <li className="space-y-2">
                         <div className="flex items-center gap-3 text-[1rem] md:text-[1.1rem]">
                             <div className="h-[25px] w-[3px] bg-text-secondary rounded-2xl"></div>
-                            <div>Favorites</div>
+                            <div className="font-bold">Favorites</div>
                         </div>
                         <p className="text-text-gray text-[0.9rem] md:text-[1rem] font-light">
                             Keep the movies that really caught your attention.
@@ -126,7 +131,7 @@ const SignUp = () => {
                     <li className="space-y-2">
                         <div className="flex items-center gap-3 text-[1rem] md:text-[1.1rem]">
                             <div className="h-[25px] w-[3px] bg-text-secondary rounded-2xl"></div>
-                            <div>Cross-Device Sync</div>
+                            <div className="font-bold">Cross-Device Sync</div>
                         </div>
                         <p className="text-text-gray text-[0.9rem] md:text-[1rem] font-light">
                             Access personal data across devices with ease.

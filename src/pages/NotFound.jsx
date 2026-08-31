@@ -9,7 +9,7 @@ const NotFound = () => {
                     404
                 </h1>
 
-                <h2 className="mt-8 text-2xl md:text-3xl font-bold text-text">
+                <h2 className="mt-8 text-2xl md:text-3xl text-text">
                     Oops! This page does not exist.
                 </h2>
 
@@ -18,7 +18,7 @@ const NotFound = () => {
                     renamed, or never existed.
                 </p>
 
-                <div className="mt-8 flex justify-center gap-4 font-bold text-[0.9rem]">
+                <div className="mt-8 flex justify-center gap-4 text-[0.9rem]">
                     <Link
                         to="/"
                         className="

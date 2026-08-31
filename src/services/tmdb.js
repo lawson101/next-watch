@@ -77,9 +77,14 @@ export function filterMedia(media_list) {
         "my life with the walter boys",
         "au bonheur des dames",
         "a winter sun wakes the wind in spring hills' dream",
+        "gail daughtry and the celebrity sex pass",
+        "night nurse",
+        "here the whole time",
     ];
     return media_list.filter(
-        (media) => !exclude.includes(media.title.toLowerCase()),
+        (media) =>
+            !exclude.includes(media.title.toLowerCase()) ||
+            media.adult === true,
     );
 }
 
@@ -107,37 +112,37 @@ export function getMediaData(response) {
         release_date: media.release_date || media.first_air_date,
         rating: media.vote_average.toFixed(1),
         overview: media.overview,
+        adult: media.adult,
     }));
 }
 
-// I have a function for extracting data from a response but there is a problem...
-// 1. The data to be displayed for movies and for TV Shows are different.
-// 2. The response needed from a category is an array while the one needed for a specific media fetch is an object
-
-export function getMovieDetails() {}
-
-export function getTvDetails(response) {
+export function getMediaDetails(response) {
     return {
         id: response.id,
-        name: response.name,
+        title: response.title || response.name,
         image_url: `https://image.tmdb.org/t/p/original${response.backdrop_path}`,
         poster_url: `https://image.tmdb.org/t/p/w342${response.poster_path}`,
         overview: response.overview,
-        genres: response.genres.map((genre) => genre.name),
-        rating: response.vote_average,
+        genres: response.genres?.map((genre) => genre.name),
+        rating: response.vote_average.toFixed(1),
+        release_date: response.release_date,
         first_air_date: response.first_air_date,
         seasons_no: response.number_of_seasons,
         episodes_no: response.number_of_episodes,
         status: response.status,
-        created_by: response.created_by.map((idx) => idx.name),
-        cast: response.credits.cast.reduce((obj, currentVal) => {
-            return obj[currentVal.name] = currentVal.character;
+        created_by: response.created_by?.map((idx) => idx.name),
+        cast: response.credits.cast?.reduce((obj, currentVal) => {
+            obj[currentVal.character] = currentVal.name;
+            return obj;
         }, {}),
-
+        runtime: {
+            hours: Math.floor(response.runtime / 60),
+            minutes: response.runtime % 60,
+        },
+        adult: response.adult,
     };
 }
 
-// Trending by Day and Week
 export function getTrendingDay() {
     return fetchTMDB("/trending/all/day");
 }
@@ -146,42 +151,34 @@ export function getTrendingWeek() {
     return fetchTMDB("/trending/all/week");
 }
 
-// Popular movies
 export async function getPopularMovies() {
     return fetchTMDB("/movie/popular");
 }
 
-// Top Rated movies
 export function getTopRatedMovies() {
     return fetchTMDB("/movie/top_rated");
 }
 
-// Now Playing movies
 export function getNowPlayingMovies() {
     return fetchTMDB("/movie/now_playing");
 }
 
-// Upcoming movies
 export function getUpcomingMovies() {
     return fetchTMDB("/movie/upcoming");
 }
 
-// Popular TV Shows
 export function getPopularShows() {
     return fetchTMDB("/tv/popular");
 }
 
-// Top Rated TV Shows
 export function getTopRatedShows() {
     return fetchTMDB("/tv/top_rated");
 }
 
-// Airing Today TV Shows
 export function getAiringTodayShows() {
     return fetchTMDB("/tv/airing_today");
 }
 
-// On the Air TV Shows
 export function getOnAirShows() {
     return fetchTMDB("/tv/on_the_air");
 }

@@ -116,14 +116,15 @@ const Home = () => {
     }, [trendingDay, index]);
 
     return (
-        <div className="bg-background text-text min-h-screen max-[475px]:px-4 px-7 py-5 space-y-10 md:space-y-15">
+        <div className="bg-background text-text min-h-screen max-[475px]:px-4 px-6 py-5 space-y-10 md:space-y-15">
             <div className="flex flex-col lg:flex-row gap-5">
                 <div className="flex-1 rounded-2xl">
                     <div className="w-full h-full relative group overflow-hidden rounded-2xl shadow-[2px_2px_10px_0px_rgba(255,255,255,0.15)] shadow-text-gray/10">
                         <img
+                            key={currentMedia?.id}
                             src={currentMedia?.image_url}
                             alt={currentMedia?.title}
-                            className="w-full h-full min-h-80 md:min-h-100 lg:min-h-130 object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="w-full h-full min-h-85 md:min-h-100 lg:min-h-130 object-cover transition-transform duration-500 group-hover:scale-105"
                         />
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
@@ -154,16 +155,21 @@ const Home = () => {
                             </button>
                         </div>
 
-                        <div className="absolute bottom-0 max-[475px]:pl-3 max-[475px]:pb-2 pl-7 pb-4 md:pl-10 md:pb-7 flex items-end max-[475px]:gap-3 gap-6">
+                        <div className="absolute bottom-0 max-[475px]:pl-3 max-[475px]:pb-2 pl-7 pb-4 md:pl-10 md:pb-7 flex items-end max-[475px]:gap-4 gap-6">
                             <div className="relative">
-                                <Link>
-                                    <img
-                                        src={currentMedia?.poster_url}
-                                        alt={currentMedia?.title}
-                                        className="max-[475px]:min-w-28 max-[475px]:h-37 min-w-30 h-40 md:min-w-45 md:min-h-55 lg:w-48 lg:min-h-63 rounded-2xl border border-white/10"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent rounded-2xl"></div>
-                                </Link>
+                                {currentMedia?.poster_url && (
+                                    <Link
+                                        to={`${currentMedia?.media_type}/${currentMedia?.id}`}
+                                    >
+                                        <img
+                                            key={currentMedia?.id}
+                                            src={currentMedia?.poster_url}
+                                            alt={currentMedia?.title}
+                                            className="min-w-35 h-45 md:min-w-45 md:min-h-60 lg:w-53 lg:min-h-75 rounded-2xl border border-white/10"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-transparent rounded-2xl"></div>
+                                    </Link>
+                                )}
 
                                 {currentMedia?.rating && (
                                     <div className="absolute right-3 bottom-3 md:right-5 md:bottom-5 flex items-center gap-2 bg-black/60 px-2 py-1 rounded-xl font-bold">
@@ -175,23 +181,33 @@ const Home = () => {
                                 )}
                             </div>
                             <div className="space-y-2 md:space-y-3 flex-1 pb-2 pr-1">
-                                <h2 className="text-[1rem] md:text-2xl font-bold text-white line-clamp-1">
-                                    <Link>{currentMedia?.title}</Link>
+                                <h2 className="text-[1.05rem] md:text-2xl font-bold text-white line-clamp-1 w-[90%]">
+                                    <Link
+                                        to={`${currentMedia?.media_type}/${currentMedia?.id}`}
+                                    >
+                                        {currentMedia?.title}
+                                    </Link>
                                 </h2>
                                 <div className="flex flex-wrap gap-2">
-                                    {currentMedia?.genres?.map((genre, index) => {
-                                        return (
-                                            <span
-                                                key={currentMedia?.genre_ids[index]}
-                                                className={`${index > 1 && "hidden sm:inline-block"} bg-text-gray/10 backdrop-blur-md text-[9px] md:text-[12px] uppercase font-bold px-2 py-1 rounded-md text-gray-200 border border-white/5`}
-                                            >
-                                                {genre}
-                                            </span>
-                                        );
-                                    })}
+                                    {currentMedia?.genres?.map(
+                                        (genre, index) => {
+                                            return (
+                                                <span
+                                                    key={
+                                                        currentMedia?.genre_ids[
+                                                            index
+                                                        ]
+                                                    }
+                                                    className={`${index > 1 && "hidden sm:inline-block"} bg-text-gray/10 backdrop-blur-md text-[10px] md:text-[12px] uppercase font-bold px-2 py-1 rounded-md text-gray-200 border border-white/5`}
+                                                >
+                                                    {genre}
+                                                </span>
+                                            );
+                                        },
+                                    )}
                                 </div>
 
-                                <p className="max-[475px]:max-w-[90%] max-w-[85%] text-[12px] md:text-[15px] leading-relaxed text-gray-300 line-clamp-2 md:line-clamp-3">
+                                <p className="max-[475px]:max-w-[90%] max-w-[85%] text-[12.5px] md:text-[15px] leading-relaxed text-gray-300 line-clamp-2 md:line-clamp-3">
                                     {currentMedia?.overview}
                                 </p>
                             </div>
@@ -204,9 +220,7 @@ const Home = () => {
                             to="/trending"
                             className="flex items-center text-[0.95rem] md:text-[1rem] text-text-secondary group"
                         >
-                            <span>
-                                Trending
-                            </span>
+                            <span>Trending</span>
                             <LuChevronRight className="text-lg group-hover:text-text-gray transition duration-300" />
                         </Link>
                         <div className="bg-black/10 backdrop-blur-md text-[10px] md:text-[12px] uppercase px-2 py-1 rounded-[5px] tracking-wider text-text-gray border-1 border-text/10">
@@ -222,7 +236,9 @@ const Home = () => {
                                     className="flex-1 px-3 py-2 hover:bg-text/[0.08] rounded-xl font-bold transition duration-300"
                                 >
                                     <div className="flex items-center gap-4">
-                                        <Link>
+                                        <Link
+                                            to={`${media?.media_type}/${media?.id}`}
+                                        >
                                             <img
                                                 src={media?.poster_url}
                                                 alt={media?.title}
@@ -230,13 +246,16 @@ const Home = () => {
                                             ></img>
                                         </Link>
                                         <div className="space-y-2">
-                                            <Link className="text-[0.85rem] md:text-sm line-clamp-1">
+                                            <Link
+                                                to={`${media?.media_type}/${media?.id}`}
+                                                className="text-[0.85rem] md:text-sm line-clamp-1"
+                                            >
                                                 {media?.title}
                                             </Link>
                                             <div className="flex items-center gap-5">
                                                 <div className="flex items-center gap-2">
-                                                    <FaStar className="text-text-secondary text-sm" />
-                                                    <span className="text-[0.7rem] md:text-[0.75rem]">
+                                                    <FaStar className="text-text-secondary" />
+                                                    <span className="text-[0.7rem] md:text-[0.75rem] mt-[1px]">
                                                         {media.rating}
                                                     </span>
                                                 </div>
@@ -269,7 +288,7 @@ const Home = () => {
                             <LuChevronRight className="text-xl md:text-2xl group-hover:text-text-gray transition duration-300" />
                         </Link>
 
-                        <div className="flex items-center w-fit h-fit ml-auto text-sm border border-surface rounded-3xl">
+                        <div className="flex items-center w-fit h-fit ml-auto text-sm border-[1.5px] border-surface rounded-3xl">
                             <button
                                 onClick={() => {
                                     setPopularFilter("movie");
@@ -307,13 +326,11 @@ const Home = () => {
                             to={`${topFilter === "movie" ? "movie" : "tv"}/top_rated`}
                             className="flex items-center group text-text-secondary"
                         >
-                            <h3 className="font-bold md:text-xl">
-                                Top Picks
-                            </h3>
+                            <h3 className="font-bold md:text-xl">Top Picks</h3>
                             <LuChevronRight className="text-xl md:text-2xl group-hover:text-text-gray transition duration-300" />
                         </Link>
 
-                        <div className="flex items-center w-fit h-fit ml-auto text-sm border border-surface rounded-3xl">
+                        <div className="flex items-center w-fit h-fit ml-auto text-sm border-[1.5px] border-surface rounded-3xl">
                             <button
                                 onClick={() => {
                                     setTopFilter("movie");
