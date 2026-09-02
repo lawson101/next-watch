@@ -28,7 +28,7 @@ const MediaDetails = () => {
     return (
         <div
             style={{ "--image": `url('${media?.image_url}')` }}
-            className="text-text min-h-[90vh] md:min-h-screen md:px-10 md:py-10 px-4 py-3 bg-cover bg-center w-full bg-[linear-gradient(to_bottom,rgba(0,0,0,0.9),rgba(0,0,0,0.9),rgba(0,0,0,1)),var(--image)]"
+            className="text-text min-h-[90vh] mt-10 md:mt-0 md:min-h-screen md:px-10 md:py-10 px-4 py-3 bg-cover bg-center w-full bg-[linear-gradient(to_bottom,rgba(0,0,0,0.9),rgba(0,0,0,0.9),rgba(0,0,0,1)),var(--image)] md:bg-[linear-gradient(to_bottom,rgba(0,0,0,0.9),rgba(0,0,0,0.9),rgba(0,0,0,1)),var(--image)]"
         >
             {!loading ? (
                 <div></div>
