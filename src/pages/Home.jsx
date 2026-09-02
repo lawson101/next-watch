@@ -124,7 +124,7 @@ const Home = () => {
                             key={currentMedia?.id}
                             src={currentMedia?.image_url}
                             alt={currentMedia?.title}
-                            className="w-full min-h-90 md:min-h-100 lg:min-h-130 object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="w-full h-full min-h-90 md:min-h-100 lg:min-h-130 object-cover transition-transform duration-500 group-hover:scale-105"
                         />
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
