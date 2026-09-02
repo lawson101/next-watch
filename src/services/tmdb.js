@@ -80,6 +80,8 @@ export function filterMedia(media_list) {
         "gail daughtry and the celebrity sex pass",
         "night nurse",
         "here the whole time",
+        "i want your sex",
+        "the wrong girls"
     ];
     return media_list.filter(
         (media) =>
